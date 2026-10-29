@@ -1,0 +1,11 @@
+/* Shared choice states for portrait and product: outline only, no check badges. */
+.check,.scene-tick{display:none!important}
+.gender-card.selected,.style-carousel .style-card.selected,.swatch-book .bg-card.selected,.history-photo.selected,.purpose-card.selected,.scene-card.selected,.direction.selected,.library-item.selected,.thumbs button.selected{
+ outline:1.5px solid var(--accent,#004896)!important;outline-offset:3px!important;
+}
+/* Keep option content and geometry stable when selected. */
+.camera-options button.active,.tone-options button.active,.choices button.active,.material-card.active{
+ background:#ffffff94!important;color:inherit!important;outline:1.5px solid var(--accent,#004896)!important;outline-offset:2px!important;
+}
+.camera-options button.active .camera-diagram{color:var(--accent,#004896)}
+button:focus-visible{outline:2px solid var(--accent,#004896)!important;outline-offset:5px!important}

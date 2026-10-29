@@ -1,0 +1,43 @@
+
+/* Full-image library with incremental density and a fading next-row hint. */
+body .history-grid,body .history-grid.comfortable,body .history-grid.compact{grid-template-columns:repeat(var(--history-columns,2),minmax(0,1fr))!important;grid-auto-rows:var(--history-tile,240px)!important;height:var(--history-window,310px)!important;max-height:none!important;overflow-y:auto!important;padding:5px 6px 45px!important;align-items:stretch;mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 45px),transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 45px),transparent 100%)}
+body .history-photo{height:100%!important;aspect-ratio:auto!important;background:#f9f8f3!important}
+body .history-photo img{object-fit:contain!important;object-position:center!important;transform:none!important;width:100%!important;height:100%!important}
+.history-view button,.view-switch button{font-size:24px!important;min-width:44px;min-height:44px!important;display:grid;place-items:center;padding:4px 12px!important}.history-view button:disabled,.view-switch button:disabled{opacity:.3}
+body .dropzone img,body .dropzone .upload-preview{display:block!important;max-width:100%!important;width:auto!important;height:auto!important;max-height:48dvh!important;object-fit:contain!important;margin:0 auto 18px!important;border:10px solid #fff!important;border-bottom-width:17px!important;border-radius:1px!important;box-shadow:2px 7px 17px #453f3320!important;background:#fff;transform:rotate(-1deg)}
+@media(max-width:700px){body .dropzone img,body .dropzone .upload-preview{max-height:300px!important;border-width:8px!important;border-bottom-width:13px!important}}
+
+/* Library geometry stays fixed while density changes inside it. */
+.history-header,.library-header{height:44px!important;min-height:44px!important;margin:0 0 16px!important;align-items:center!important}
+.history-view,.view-switch{display:flex!important;gap:4px!important;padding:5px!important;border:1px solid #ffffffb8!important;border-radius:999px!important;background:linear-gradient(145deg,#ffffffa8,#f4f8fc70)!important;backdrop-filter:blur(14px) saturate(125%);box-shadow:inset 0 1px 1px #ffffffef,0 2px 7px #26486609!important}
+.history-view button,.view-switch button{border-radius:999px!important;background:transparent!important;color:#526667!important;border:1px solid transparent!important;min-width:48px!important;height:38px!important;min-height:38px!important;font-size:24px!important;box-shadow:none!important}
+.history-view button:hover:not(:disabled),.view-switch button:hover:not(:disabled),.history-view button:focus-visible,.view-switch button:focus-visible{background:linear-gradient(145deg,#2769ad,#004896)!important;color:#fff!important;box-shadow:inset 0 1px 2px #ffffff88!important}
+@media(min-width:701px){
+main[data-step="0"] .stage{justify-content:flex-start!important;padding-top:12px!important}
+body .upload-history,body .upload-layout{align-items:start!important}
+body .upload-history .dropzone{padding:65px 0 0!important;justify-content:flex-start!important;gap:0!important}
+body .upload-layout .dropzone{padding:65px 0 0!important;min-height:0!important;background:transparent!important;border:0!important}
+body .dropzone img,body .dropzone .upload-preview{transform:none!important;margin-top:0!important}
+body .photo-library,body .history-panel{align-self:start!important;min-width:0}
+}
+@media(max-width:700px){.history-header,.library-header{height:44px!important}.history-view button,.view-switch button{min-width:44px!important}body .dropzone img,body .dropzone .upload-preview{transform:none!important}}
+
+.thumbnail-control{display:flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid #ffffffc9;border-radius:999px;background:linear-gradient(145deg,#ffffffb0,#f4f8fc70);backdrop-filter:blur(14px) saturate(125%);box-shadow:inset 0 1px 1px #ffffffef,0 2px 7px #26486609;color:#526667;flex-shrink:0}
+.thumbnail-label{font-size:13px;white-space:nowrap}.thumbnail-value{font-size:12px;min-width:53px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.thumbnail-icon{display:grid;width:18px;height:18px;gap:2px;flex:none}.thumbnail-icon i{border-radius:1px;background:#607887}.small-grid{grid-template-columns:repeat(3,1fr)}.large-grid{grid-template-columns:repeat(2,1fr)}
+.thumbnail-slider{--slider-progress:100%;appearance:none;-webkit-appearance:none;width:105px;height:5px;margin:12px 0;border-radius:9px;background:linear-gradient(to right,#004896 0%,#004896 var(--slider-progress),#a6b7c64a var(--slider-progress),#a6b7c64a 100%);cursor:pointer;touch-action:pan-y;flex:none}
+.thumbnail-slider::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:19px;height:19px;border-radius:50%;background:#004896;border:2px solid #ffffffdc;box-shadow:0 2px 5px #28435c30}.thumbnail-slider::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#004896;border:2px solid white}.thumbnail-slider:focus-visible{outline:2px solid #004896;outline-offset:7px}
+@media(max-width:700px){.history-header,.library-header{height:auto!important;min-height:44px!important;flex-wrap:wrap}.thumbnail-control{padding:8px 12px;gap:8px}.thumbnail-slider{width:90px}.thumbnail-label{font-size:12px}.thumbnail-value{font-size:11px}}
+
+/* Compact, quiet thumbnail density control shared across all three products. */
+.thumbnail-control{gap:8px;padding:4px 10px;border-color:#ffffffa0;background:linear-gradient(145deg,#ffffff80,#f4f8fc45);box-shadow:inset 0 1px 1px #ffffffa0;min-height:34px}
+.thumbnail-icon{width:14px;height:14px;gap:2px;opacity:.8}
+.thumbnail-slider{width:76px;height:3px;margin:10px 0}
+.thumbnail-slider::-webkit-slider-thumb{width:15px;height:15px;box-shadow:0 1px 3px #28435c20}
+.thumbnail-slider::-moz-range-thumb{width:11px;height:11px;box-shadow:0 1px 3px #28435c20}
+@media(max-width:700px){.thumbnail-control{padding:5px 10px;gap:8px;min-height:38px}.thumbnail-slider{width:76px}}
+
+.thumbnail-control button.thumbnail-icon{padding:0;border:0;border-radius:3px;background:transparent;box-sizing:content-box;border:5px solid transparent;margin:-5px;cursor:pointer;min-height:0;min-width:0;box-shadow:none}
+.thumbnail-control button.thumbnail-icon:hover:not(:disabled){opacity:1;background:#00489610}
+.thumbnail-control button.thumbnail-icon:disabled{opacity:.3;cursor:default}
+.thumbnail-control button.thumbnail-icon:focus-visible{outline:2px solid #004896;outline-offset:3px}

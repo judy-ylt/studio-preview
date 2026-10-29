@@ -1,0 +1,17 @@
+
+@media(max-width:1100px){.stage{width:100%}#bubbles{display:none}main[data-step="0"] .upload-history{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}}
+@media(max-width:700px){
+html,body{height:auto;min-height:100dvh;overflow-x:hidden;overflow-y:auto}
+main{height:auto;min-height:100dvh;padding:24px 18px 180px}h1{font-size:26px;line-height:1.35;margin-bottom:24px}.stage{display:block;flex:none;width:100%;min-height:0}
+main[data-step="0"] .upload-history{display:grid;grid-template-columns:minmax(0,1fr);gap:25px}.dropzone{min-height:220px;padding:20px}.dropzone img{height:220px}.history-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-height:350px}.history-panel h2{font-size:19px}
+.cards{padding:22px 8px 30px;gap:20px;touch-action:pan-x}.card{flex-basis:72%;min-width:0;height:350px}.caption strong{font-size:20px}.caption small{font-size:15px}
+main[data-step="2"] .art,main[data-step="3"] .pose-art{width:200px;max-width:100%}
+.text-selection .text-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.text-selection .text-card{min-height:90px;font-size:22px}
+.result{grid-template-columns:minmax(0,1fr);gap:30px}.hanging-art{width:85%;max-width:390px;margin:12px auto}.result-info{gap:14px}.result-info p{font-size:14px}.result-info .primary,.result-info .secondary{font-size:16px;min-height:48px}
+.desk-tools{display:none!important}
+footer{bottom:calc(8px + env(safe-area-inset-bottom));width:calc(100vw - 20px);padding:10px;grid-template-columns:1fr 1fr;grid-template-rows:62px 44px;gap:10px;border-radius:22px}
+footer #steps{grid-column:1 / -1;grid-row:1;gap:5px;width:100%}footer #steps button{height:62px;padding:7px 1px;border-radius:12px}nav strong{font-size:17px;margin-bottom:5px}nav span{font-size:10px;white-space:nowrap}
+footer #back{grid-column:1;grid-row:2}footer #next{grid-column:2;grid-row:2}footer .primary,footer .secondary{font-size:15px;min-height:44px;padding:10px}
+.theme-preview{left:18px;bottom:155px;font-size:12px}
+}
+@media(max-width:700px){main .primary,main .secondary{font-size:16px;min-height:44px;padding:12px 18px}.text-settings input,.text-settings select{font-size:16px}}

@@ -1,0 +1,30 @@
+body.portrait-framing .app{will-change:auto!important}
+.portrait-viewfinder{width:200px;height:267px;margin:0 auto 18px;position:relative;overflow:hidden;background:#e2e1da;box-shadow:0 7px 20px #322c2220;transition:width .5s,height .5s}
+.portrait-viewfinder img{width:100%;height:100%;object-fit:cover;opacity:.8}
+.portrait-viewfinder::after{content:"";position:absolute;inset:9px;border:1px solid #fff9;background:linear-gradient(#fff8,#fff8) center/18px 1px no-repeat,linear-gradient(#fff8,#fff8) center/1px 18px no-repeat}
+.portrait-viewfinder span{position:absolute;bottom:17px;left:0;right:0;color:white;font-size:11px;text-align:center;text-shadow:0 1px 3px #0008}
+.portrait-shutter{position:fixed;inset:0;z-index:150;pointer-events:none}.portrait-shutter::before,.portrait-shutter::after{content:"";position:absolute;left:0;right:0;height:0;background:#1e2524;animation:portrait-shutter .38s ease-in-out}.portrait-shutter::before{top:0}.portrait-shutter::after{bottom:0}
+@keyframes portrait-shutter{40%{height:50%}100%{height:0}}
+/* Camera composition: one centered finder, with the five size controls beneath. */
+body.portrait-framing .output-confirmation:has(.portrait-viewfinder){position:fixed!important;left:50%;top:105px;bottom:113px;transform:translateX(-50%);width:min(760px,calc(100vw - 32px));min-height:0!important;padding:0!important;display:flex!important;flex-direction:column;justify-content:center;align-items:center;gap:12px;z-index:12}
+body.portrait-framing .portrait-viewfinder{flex:none;grid-row:auto;margin:0 auto!important;max-height:none;border:7px solid #ffffffe0;box-sizing:content-box;box-shadow:0 10px 30px #25382b2b}
+body.portrait-framing .output-confirmation .ratio-grid{display:flex!important;grid-column:auto!important;flex-wrap:nowrap;justify-content:center;gap:8px!important;width:min(100%,640px);margin:0!important;flex:none}
+body.portrait-framing .output-confirmation .ratio-btn{flex:1;min-width:0!important;max-width:120px;min-height:66px!important;padding:6px 5px!important;gap:4px!important;justify-content:center;border-radius:10px!important;background:#ffffff50!important;transition:background .2s}
+body.portrait-framing .output-confirmation .ratio-btn.selected{background:#ffffffb8!important;box-shadow:inset 0 0 0 1.5px #436d8a!important}
+body.portrait-framing .output-confirmation .ratio-shape{max-width:34px;max-height:25px;min-height:13px}
+body.portrait-framing .output-confirmation .ratio-btn strong{font-size:14px!important}
+body.portrait-framing .output-confirmation .ratio-btn small{font-size:9px!important}
+body.portrait-framing .output-size{margin:0!important;flex:none;font-size:13px}
+body.portrait-framing .prototype-note{margin:0!important;max-width:600px;text-align:center;font-size:11px;line-height:1.5}
+@media(max-width:700px){body.portrait-framing .output-confirmation:has(.portrait-viewfinder){top:83px;bottom:174px;gap:10px}body.portrait-framing .portrait-viewfinder{border-width:5px;max-width:calc(100vw - 48px)}body.portrait-framing .output-confirmation .ratio-grid{gap:5px!important}body.portrait-framing .output-confirmation .ratio-btn small{display:none}body.portrait-framing .output-confirmation .ratio-btn{min-height:59px!important}body.portrait-framing .prototype-note{font-size:10px}}
+@media(max-height:650px){body.portrait-framing .output-confirmation:has(.portrait-viewfinder){top:80px;bottom:106px;gap:6px}body.portrait-framing .prototype-note{display:none}}
+body.portrait-framing .output-confirmation .ratio-shape{display:none!important}
+.bg-swatch .scene-card-image{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.portrait-finder-canvas{display:block;width:100%;height:100%;object-fit:contain}
+@media(prefers-reduced-motion:reduce){.portrait-viewfinder{transition:none}.portrait-shutter{display:none}}
+
+/* Output ratios remain readable before selection. */
+body.portrait-framing .output-confirmation .ratio-btn{background:#f7f8f8ed!important;color:#344c57!important;border:1px solid #8397a8!important;box-shadow:0 2px 6px #243c4a12!important;opacity:1!important;}
+body.portrait-framing .output-confirmation .ratio-btn small{color:#516774!important;}
+body.portrait-framing .output-confirmation .ratio-btn:hover{background:#e9f0f6!important;border-color:#426985!important;}
+body.portrait-framing .output-confirmation .ratio-btn.selected{background:#fff!important;border-color:#004896!important;outline:2px solid #004896!important;outline-offset:2px;color:#004896!important;}

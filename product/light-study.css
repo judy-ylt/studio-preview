@@ -1,0 +1,11 @@
+.light-study-holder{position:relative}
+.light-study-label{position:absolute;left:16px;bottom:14px;padding:6px 10px;border-radius:6px;background:#fff9;color:#41534d;font-size:12px;line-height:1.5;pointer-events:none;backdrop-filter:blur(8px)}
+.light-study-note{font-size:13px;line-height:1.7;color:#53645c;min-height:45px;margin:10px 0 0}
+[data-choice="light"]{transition:background .2s,color .2s,box-shadow .2s}
+[data-choice="light"]:hover{box-shadow:inset 0 0 0 1px #315f8d}
+@media(max-width:700px){.light-study-label{font-size:11px;left:10px;bottom:10px}.light-study-note{font-size:13px}}
+.light-study-label{left:50%;transform:translateX(-50%);white-space:nowrap;bottom:10px}
+
+/* Keep the disclosure outside the image, close to the actual canvas. */
+.light-study-holder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.light-study-label{position:static;left:auto;bottom:auto;transform:none;background:none;backdrop-filter:none;border-radius:0;padding:0;font-size:12px;line-height:1.6;color:#617168;text-align:center;white-space:normal}

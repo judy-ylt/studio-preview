@@ -1,0 +1,37 @@
+/* Small graphics keep their visual size; transparent hit areas grow. */
+.thumbnail-icon{position:relative;overflow:visible!important}
+.thumbnail-icon::after,.arrows button::after,.carousel-controls button::after{content:"";position:absolute;left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%)}
+.arrows button,.carousel-controls button{position:relative}
+.thumbnail-control{gap:12px!important}
+body main[data-step="4"] .text-card.selected{background:#faf8f2!important;outline:1.5px solid var(--accent);outline-offset:3px}
+#currentToneStatus{font-size:12px;font-weight:400;color:#52676d;display:block;margin-top:5px}
+.draft-restored{font-size:13px;color:#52676d;margin:0 0 12px;line-height:1.6}
+.mobile-progress{display:none}
+@media(max-width:700px){
+ footer,.bottom{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;padding:10px!important;height:auto!important;min-height:0!important;bottom:max(8px,env(safe-area-inset-bottom))!important}
+ footer .mobile-progress,.bottom .mobile-progress{display:block!important;grid-column:1/-1;min-height:36px;background:transparent;border:0;color:var(--ink,#263b3e);font-size:13px;text-align:left;padding:4px 8px}
+ footer #steps,.bottom #steps{display:none!important;grid-column:1/-1;grid-row:2;max-width:100%}
+ footer.steps-expanded #steps,.bottom.steps-expanded #steps{display:flex!important;overflow-x:auto}
+ footer>#back,.bottom>#back{grid-column:1;grid-row:3;min-height:44px;width:100%!important}
+ footer>#next,.bottom>#next{grid-column:2;grid-row:3;min-height:44px;width:100%!important}
+ footer>#back[hidden],.bottom>#back[hidden],footer>#next[hidden],.bottom>#next[hidden]{display:none!important}
+ main{padding-bottom:135px!important}
+}
+
+@media(max-width:700px){
+footer,.bottom{grid-template-rows:auto auto!important;grid-auto-rows:auto!important;align-content:start!important}
+footer>#back,.bottom>#back,footer>#next,.bottom>#next{grid-row:2!important}
+footer.steps-expanded,.bottom.steps-expanded{grid-template-rows:auto auto auto!important}
+footer.steps-expanded>#back,.bottom.steps-expanded>#back,footer.steps-expanded>#next,.bottom.steps-expanded>#next{grid-row:3!important}
+}
+
+/* Keep navigation labels inside their allocated footer column. */
+footer > #next {padding-inline:12px;text-align:center;white-space:nowrap;box-sizing:border-box;}
+
+/* Hidden navigation must not be restored by layout styles on the result screen. */
+footer > #next[hidden],footer > #back[hidden]{display:none!important;}
+body[data-step="5"] .result-info{min-width:0;gap:14px;}
+body[data-step="5"] .result-info h2,body[data-step="5"] .result-info p{margin:0;overflow-wrap:anywhere;}
+body[data-step="5"] .result-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+body[data-step="5"] .result-actions button{min-width:0;white-space:normal;line-height:1.5;}
+body[data-step="5"] .result-links{flex-wrap:wrap;}

@@ -1,0 +1,31 @@
+/* One understated adult model; the medium, rather than identity, carries each option. */
+main[data-step="1"] .art{position:relative;container-type:size;background-image:none!important}
+main[data-step="1"] .art::before{content:"";position:absolute;top:50%;left:50%;width:min(100cqw,100cqh);aspect-ratio:1;transform:translate(-50%,-50%);background-image:url('assets/cartoon-neutral-adult-v1.webp');background-repeat:no-repeat;background-size:300% 200%;background-position:inherit;pointer-events:none}
+
+/* Use the same square portrait area as the other six styles. */
+main[data-step="1"] .art.geometric-airbrush-art{background-image:none!important}
+main[data-step="1"] .art.geometric-airbrush-art::before{content:"";width:min(92cqw,92cqh);background-image:url("assets/geometric-airbrush-v5.webp");background-size:contain;background-position:center;background-repeat:no-repeat}
+
+/* A quiet selection ring follows the printed stamp, not the whole label card. */
+main[data-step="2"] .card{outline:0}
+main[data-step="2"] .card.selected{background:transparent;box-shadow:none}
+main[data-step="2"] .card .check{display:none!important}
+main[data-step="2"] .card.selected .caption strong{color:var(--ink);text-decoration:none}
+main[data-step="2"] .mood-art{--stamp-center-x:53.8%;isolation:isolate}
+main[data-step="2"] .card:nth-child(4n+2) .mood-art{--stamp-center-x:51%}
+main[data-step="2"] .card:nth-child(4n+3) .mood-art{--stamp-center-x:48%}
+main[data-step="2"] .card:nth-child(4n) .mood-art{--stamp-center-x:46%}
+main[data-step="2"] .mood-art::after{content:"";position:absolute;left:var(--stamp-center-x);top:54.4%;height:65%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:transparent;box-shadow:none;z-index:-1;pointer-events:none;transition:background-color .2s,box-shadow .2s}
+main[data-step="2"] .card.selected .mood-art::after{background:color-mix(in srgb,var(--soft) 28%,transparent);box-shadow:0 0 0 1.5px color-mix(in srgb,var(--accent) 45%,transparent)}
+main[data-step="2"] .card:focus-visible{outline:none}
+main[data-step="2"] .card:focus-visible .mood-art::after{outline:2px solid var(--accent);outline-offset:4px}
+@media(prefers-reduced-motion:reduce){main[data-step="2"] .mood-art::after{transition:none}}
+
+/* Consistent selection language: quiet outlines, no corner badges. */
+main[data-step="1"] .card .check,main[data-step="3"] .card .check{display:none!important}
+main[data-step="1"] .card.selected{outline:1.5px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:3px}
+main[data-step="3"] .card.selected{outline:1.5px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:3px}
+main[data-step="3"] .pose-art{position:relative;isolation:isolate}
+main[data-step="3"] .pose-art::after{content:"";position:absolute;inset:3%;border-radius:22px;background:transparent;box-shadow:none;z-index:-1;pointer-events:none}
+main[data-step="3"] .card.selected .pose-art::after{background:transparent;box-shadow:none}
+main[data-step="1"] .card:focus-visible,main[data-step="3"] .card:focus-visible{outline:2px solid var(--accent);outline-offset:4px}

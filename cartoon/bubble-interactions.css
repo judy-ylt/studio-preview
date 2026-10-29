@@ -1,0 +1,3 @@
+/* One spring simulation controls movement in every studio. */
+:is(.inspiration-cloud,#bubbles,aside#summary) :is(.inspiration-bubble,.bubble){animation:none!important;transition:background .3s,border-color .3s,box-shadow .3s!important;transform-origin:center;will-change:transform}
+@media(prefers-reduced-motion:reduce){:is(.inspiration-cloud,#bubbles,aside#summary) :is(.inspiration-bubble,.bubble){transition:none!important;will-change:auto}}

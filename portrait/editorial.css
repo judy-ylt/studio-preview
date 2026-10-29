@@ -1,0 +1,203 @@
+/* Editorial edition: one neutral surface, photographs, measured blue accents. */
+:root{--ink:#252826;--muted:#777d7e;--paper:#f7f7f4;--blue:#2879e6}
+body,.app,.app[data-scene],.workspace,.workspace.studio-workspace{background:var(--paper)!important;color:var(--ink)}
+.app:before,.app:after,.workspace:before,.workspace:after,.scene-layer,.studio-scene:after{display:none!important}
+.workspace main{padding:32px 44px 0!important}
+.page-top h1{font-size:30px!important;font-weight:500!important;letter-spacing:-.7px!important;color:var(--ink);line-height:1.3}
+.page-top{margin:0!important}
+.toolbar{min-height:40px;margin-top:12px;align-items:center}
+.pills{gap:22px!important}.pill{position:relative;padding:7px 0!important;border:0!important;border-radius:0!important;background:none!important;color:#939796!important;font-size:13px;font-weight:400;box-shadow:none!important;backdrop-filter:none!important}
+.pill.active{background:none!important;color:#252826!important}.pill.active:after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:#252826}
+.gender-card,.style-carousel .style-card{border:6px solid #fff!important;box-shadow:0 3px 10px #1820200b!important}
+.gender-card.selected,.style-carousel .style-card.selected{outline:1px solid #2879e6!important;outline-offset:3px;box-shadow:0 3px 10px #1820200b!important}
+.gender-grid{max-width:none!important}.gender-card{transform:rotate(-3deg)!important}.gender-card:nth-child(2){transform:rotate(3deg)!important}
+.style-carousel .style-card{transform:rotate(-1deg)!important;background:#fff!important;position:relative}
+.style-carousel .style-card:nth-child(2n){transform:rotate(1deg)!important}.style-carousel .style-card:nth-child(3n){transform:rotate(0)!important}
+.style-carousel .style-card:hover,.style-carousel .style-card.selected{transform:translateY(-6px)!important}
+.style-carousel .style-card:after{display:none!important}
+.style-carousel .style-card .portrait{height:calc(100% - 69px)!important;object-fit:cover;object-position:center 30%}
+.style-carousel .style-card .overlay{left:10px!important;right:8px;bottom:10px!important;color:var(--ink)!important;text-shadow:none!important;transform:none!important}
+.style-carousel .overlay strong{color:var(--ink)!important;font-size:15px!important;font-weight:500!important;letter-spacing:0!important}
+.card-tags{gap:0!important;margin-top:7px!important;flex-wrap:wrap}
+.card-tags>span,.bg-label .card-tags>span,.pose-style-card .card-tags>span{background:none!important;border:0!important;border-radius:0!important;padding:0!important;font-size:10px!important;color:var(--muted)!important;backdrop-filter:none!important;line-height:1.5}
+.card-tags>span+span:before{content:"·";display:inline-block;margin:0 6px;color:#b1b5b3}
+.pose-style-card,.pose-art{background-color:#f4f3ef!important}.pose-style-card .pose-art{height:calc(100% - 69px)!important}
+.swatch-book .bg-card{border:6px solid #fff!important;box-shadow:-3px 3px 9px #1820200b!important;transform:rotate(calc(var(--card-angle)*.4));margin-right:-15px}
+.swatch-book .bg-card:hover,.swatch-book .bg-card.selected{transform:translateY(-7px)!important;box-shadow:0 5px 12px #18202010!important;outline-width:1px}
+.swatch-book .bg-label{min-height:94px!important;padding:13px 10px!important;gap:6px}.bg-label strong{color:var(--ink)!important;font-weight:500!important}.bg-label small{color:#9b9e9b!important;font-size:9px!important}
+.carousel-controls button{border:1px solid #dedfda;background:transparent;box-shadow:none;color:#575f60;width:31px;height:31px;font-size:21px}
+.summary{background:none!important;border:0!important;box-shadow:none!important;padding:18px 14px!important;top:100px!important;width:286px!important;backdrop-filter:none!important}
+.summary-head{color:#818785!important;font-size:12px!important;font-weight:400!important;letter-spacing:1px}
+.inspiration-cloud{width:256px!important;height:405px!important;margin-top:22px!important}
+.inspiration-cloud .inspiration-bubble:not(.bubble-person){width:96px!important;height:96px!important;padding:10px!important;box-shadow:none!important}
+.inspiration-cloud .inspiration-bubble.is-empty{background:transparent!important;border-color:#d5d9d5!important}
+.inspiration-cloud .inspiration-bubble.is-chosen:not(.bubble-person){background:#e9f0f5!important;border-color:transparent!important;box-shadow:none!important}
+.inspiration-bubble strong{font-size:12px!important;font-weight:500!important;color:#586971}
+.inspiration-bubble .bubble-kicker{font-size:9px!important;letter-spacing:1px!important;color:#9da8ab}
+.inspiration-cloud .bubble-person{left:120px!important;top:136px!important;width:128px!important;height:128px!important}
+.inspiration-cloud .bubble-style{left:126px!important;top:0!important}.inspiration-cloud .bubble-background{left:0!important;top:111px!important}.inspiration-cloud .bubble-pose{left:35px!important;top:278px!important}
+.bubble-person strong{color:white!important}.bubble-person .bubble-kicker{color:#ffffffb0!important}
+.primary{background:#2879e6!important;box-shadow:none!important;font-weight:400!important}.secondary{background:transparent!important;border-color:#d8dddc!important;box-shadow:none!important;color:#565f63!important}
+body>.bottom{border-top:1px solid #e5e6e1!important;height:88px!important;min-height:88px!important;padding:18px 44px!important}
+.bottom .primary,.bottom .secondary{padding:11px 23px!important;font-size:13px}
+.liquid-map{opacity:.8}
+.dropzone{background:#ffffff55!important;border:1px dashed #cfd5d3!important;border-radius:0!important}.upload-preview{border-radius:0!important}
+.library-header h3{color:#424b4c;font-size:14px;font-weight:400}.library-header>div>span{color:#969e9d;font-size:10px}
+.history-photo{border-width:4px!important;box-shadow:none!important}.history-photo.selected{border-color:#82ace0!important}
+.view-switch{background:#e9ece9;border-radius:20px;padding:3px}.view-switch button{border-radius:50%}
+.output-confirmation{background:none!important}.ratio-btn strong{color:#424b4c}.ratio-btn small,.output-size{color:#7c8584!important}
+@media(min-width:761px){.app>.workspace{padding-bottom:88px!important}.has-inspiration .page-top,.has-inspiration .toolbar{padding-right:310px!important}.has-inspiration .workspace:not(.studio-workspace) .content{padding-right:310px!important}}
+@media(max-width:1150px){.summary{display:none!important}.has-inspiration .page-top,.has-inspiration .toolbar,.has-inspiration .workspace:not(.studio-workspace) .content{padding-right:0!important}}
+@media(max-width:760px){.workspace main{padding:24px 20px 0!important}.page-top h1{font-size:25px!important}.pills{gap:18px!important}body>.bottom{padding:16px 20px!important;height:82px!important}.style-carousel .style-card .overlay{left:7px!important}.card-tags>span{font-size:9px!important}}
+.style-carousel .style-card .portrait{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:calc(100% - 65px)!important;display:block}
+.style-carousel .style-card .overlay{display:flex!important;flex-direction:column;justify-content:flex-end;gap:5px;min-height:40px;bottom:8px!important}
+.style-carousel .style-card .overlay strong{display:block;line-height:1.4!important;margin:0!important}
+.style-carousel .style-card .overlay .card-tags{margin:0!important}
+.pose-style-card .pose-art{position:absolute;top:0;left:0;height:calc(100% - 65px)!important}
+
+/* Three zones of one continuous photographic studio, beneath the UI. */
+.studio-world{display:none;position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url('assets/studio-panorama-v1.webp');background-size:300% auto;background-repeat:no-repeat;background-color:#efeee9}
+body.inside-studio .studio-world{display:block}
+body.inside-studio .app,body.inside-studio .workspace,body.inside-studio .workspace.studio-workspace{background:transparent!important}
+body.inside-studio .app{position:relative;z-index:1}
+body.inside-studio .departing-scene{background:transparent!important}
+body.inside-studio>.bottom{border-top-color:#d8d9d033!important;backdrop-filter:none!important}
+body.inside-studio .summary{background:none!important}
+body.inside-studio .pill{color:#777b78!important}
+body.inside-studio .inspiration-cloud .inspiration-bubble.is-empty{background:#f7f7f47a!important}
+body.inside-studio .inspiration-cloud .inspiration-bubble.is-chosen:not(.bubble-person){background:#e9f0f5e8!important}
+@media(max-aspect-ratio:1/1){.studio-world{background-size:auto 125%;background-position-y:center}}
+.studio-world{background-size:max(100vw,300dvh) 100%}
+body.inside-studio .carousel-controls button{background:#f7f7f4c9;border-color:#ffffffad;color:#4d5555}
+body.inside-studio>.bottom .secondary{background:#f7f7f4b8!important}
+
+/* Isolated studio accents, restricted to the spare area below the cards. */
+.studio-world{inset:auto!important;right:calc(310px + 3vw);bottom:100px;width:180px;height:clamp(90px,15dvh,150px);background:none!important;opacity:1;display:none}
+.studio-world img{display:block;width:100%;height:100%;object-fit:contain;object-position:bottom;filter:none;pointer-events:none}
+body.inside-studio,body.inside-studio .app,body.inside-studio .workspace,body.inside-studio .workspace.studio-workspace{background:var(--paper)!important}
+body.inside-studio .app,body.inside-studio .workspace,body.inside-studio .workspace.studio-workspace{background:transparent!important}
+body.inside-studio .inspiration-cloud .inspiration-bubble.is-empty{background:transparent!important}
+body.inside-studio .inspiration-cloud .inspiration-bubble.is-chosen:not(.bubble-person){background:#e9f0f5!important}
+body.inside-studio>.bottom{border-top-color:#e5e6e1!important}
+@media(max-width:1150px){.studio-world{right:40px;width:135px;height:110px}}
+@media(max-width:760px),(max-height:620px){.studio-world{display:none!important}}
+.studio-world{right:calc(310px + 3vw)!important;bottom:100px!important;left:auto!important;top:auto!important}
+@media(max-width:1150px){.studio-world{right:40px!important}}
+/* Ground the props at the outer edge, with their feet partly out of frame. */
+.studio-world{right:150px!important;bottom:-18px!important;width:160px;height:clamp(150px,28dvh,240px)}
+@media(max-width:1150px){.studio-world{right:150px!important;width:125px;height:180px}}
+
+/* Pose pilot: display cards above a single grounded foreground set. */
+@media(min-width:761px) and (min-height:621px){
+ .app[data-scene="shooting"] .pose-scene{justify-content:flex-start!important;padding-top:5px;position:relative}
+ .app.has-inspiration[data-scene="shooting"] .pose-carousel{flex:0 0 auto!important;height:clamp(260px,40dvh,405px)!important;padding-top:18px!important;padding-bottom:22px!important;align-items:center}
+ .app.has-inspiration[data-scene="shooting"] .pose-carousel .pose-style-card{height:clamp(220px,33dvh,330px)!important;max-height:330px}
+ .app[data-scene="shooting"] .pose-scene>.carousel-controls{position:absolute;right:calc(var(--bubble-clearance,310px) + 26px);bottom:35px;margin:0!important;gap:14px}
+ body.pose-stage-active .studio-world{display:block!important;left:calc((100vw - 310px)/2)!important;right:auto!important;bottom:98px!important;top:auto!important;width:clamp(300px,34vw,510px);height:clamp(170px,28dvh,310px);translate:-50% 0;z-index:0}
+ body.pose-stage-active .studio-world img{object-fit:contain;object-position:center bottom}
+}
+@media(min-width:761px) and (max-width:1150px) and (min-height:621px){body.pose-stage-active .studio-world{left:50%!important}}
+
+@media(min-width:761px) and (min-height:621px){.app[data-scene="shooting"] .pose-style-card .pose-art{width:auto!important;aspect-ratio:3/4;max-width:100%;left:50%!important;transform:translateX(-50%);background-size:400% 215%}}
+
+/* Perspective pose room: a readable gallery beside a full-scale studio. */
+@media(min-width:761px) and (min-height:621px){
+ body.pose-stage-active .studio-world{left:auto!important;right:-6vw!important;bottom:88px!important;width:58vw;height:calc(100dvh - 150px);translate:none;z-index:0}
+ body.pose-stage-active .studio-world img{object-fit:contain;object-position:right center}
+ .app[data-scene="shooting"] .pose-scene{padding-top:0;justify-content:center!important;perspective:1800px}
+ .app.has-inspiration[data-scene="shooting"] .pose-carousel{width:57vw!important;max-width:calc(100vw - 330px);height:clamp(300px,50dvh,500px)!important;padding:28px 30px 32px 6px!important;transform:rotateY(9deg);transform-origin:left center;overflow:hidden;mask-image:linear-gradient(to right,#000 0%,#000 88%,transparent 100%)}
+ .app.has-inspiration[data-scene="shooting"] .pose-carousel .pose-style-card{flex:0 0 calc((57vw - 75px)/4.35)!important;width:calc((57vw - 75px)/4.35)!important;height:clamp(230px,36dvh,350px)!important;min-width:0!important}
+ .app[data-scene="shooting"] .pose-scene>.carousel-controls{right:auto;left:24vw;bottom:25px}
+ .app[data-scene="shooting"] .pose-style-card .pose-art{max-width:100%;background-color:#fff!important}
+ .app[data-scene="shooting"] .summary{top:76px!important;right:18px!important;transform:scale(.86);transform-origin:top right}
+}
+@media(min-width:761px) and (max-width:1150px) and (min-height:621px){
+ body.pose-stage-active .studio-world{left:auto!important;right:-10vw!important;width:62vw}
+ .app.has-inspiration[data-scene="shooting"] .pose-carousel{max-width:none}
+}
+@media(prefers-reduced-motion:reduce){.app[data-scene="shooting"] .pose-carousel{transform:none}}
+@media(min-width:761px) and (min-height:621px){
+ body.pose-stage-active .inspiration-cloud .inspiration-bubble.is-empty{background:#f7f7f4f0!important;border-color:#bfcbd0!important}
+ body.pose-stage-active .inspiration-cloud .inspiration-bubble.is-chosen:not(.bubble-person){background:#e9f0f5f5!important}
+}
+/* The settings constellation leads; the studio becomes its quiet spatial backdrop. */
+@media(min-width:1151px) and (min-height:621px){
+ body.pose-stage-active .studio-world{right:-9vw!important;bottom:88px!important;width:61vw;height:calc(100dvh - 185px);opacity:.36;mask-image:linear-gradient(115deg,#000 10%,#000 42%,#0006 72%,transparent 98%)}
+ .app[data-scene="shooting"] .summary{top:100px!important;right:28px!important;width:292px!important;transform:none;padding:0!important}
+ .app[data-scene="shooting"] .summary-head{display:none}
+ .app[data-scene="shooting"] .inspiration-cloud{width:280px!important;height:368px!important;margin-top:0!important}
+ .app[data-scene="shooting"] .inspiration-cloud .bubble-person{left:94px!important;top:125px!important;width:128px!important;height:128px!important;box-shadow:0 10px 30px #253b5010!important}
+ .app[data-scene="shooting"] .inspiration-cloud .bubble-style{left:8px!important;top:8px!important}
+ .app[data-scene="shooting"] .inspiration-cloud .bubble-background{left:174px!important;top:20px!important}
+ .app[data-scene="shooting"] .inspiration-cloud .bubble-pose{left:12px!important;top:258px!important}
+ .app[data-scene="shooting"] .inspiration-cloud .inspiration-bubble:not(.bubble-person){width:100px!important;height:100px!important}
+ .app[data-scene="shooting"] .inspiration-cloud .inspiration-bubble.is-chosen:not(.bubble-person){background:#e2edf5!important;border:1px solid #ffffffa8!important;box-shadow:0 8px 24px #3d60780a!important}
+ .app[data-scene="shooting"] .inspiration-cloud .inspiration-bubble.is-empty{background:#f7f7f4e8!important;border:1px dashed #bfcbd0!important}
+ .app[data-scene="shooting"] .inspiration-bubble .bubble-kicker{display:none!important}
+ .app[data-scene="shooting"] .inspiration-bubble strong{font-size:13px!important}
+}
+@media(min-width:1151px) and (min-height:621px){
+ .app[data-scene="shooting"] .bubble-person strong{position:absolute;bottom:16px;left:0;right:0;text-align:center}
+}
+
+/* Drag follows the pointer immediately; snap is restored only after release. */
+.style-carousel,.swatch-book{touch-action:pan-y;cursor:grab;user-select:none}
+.style-carousel.dragging,.swatch-book.dragging{scroll-behavior:auto!important;scroll-snap-type:none!important;cursor:grabbing}
+.style-carousel img{user-select:none;-webkit-user-drag:none}
+@media(min-width:1151px) and (min-height:621px){
+ .app.has-inspiration[data-scene="shooting"] .pose-carousel{width:65vw!important;max-width:none;transform:rotateY(7deg);gap:16px!important;overflow-x:auto!important;overflow-y:hidden!important}
+ .app.has-inspiration[data-scene="shooting"] .pose-carousel .pose-style-card{flex:0 0 calc((65vw - 115px)/5.25)!important;width:calc((65vw - 115px)/5.25)!important}
+ body.pose-stage-active .studio-world{width:49vw;right:-8vw!important}
+}
+
+/* Independent equipment layers: retain recognizable silhouettes, without a room box. */
+@media(min-width:1151px) and (min-height:621px){
+ body.pose-stage-active .studio-world{right:0!important;bottom:88px!important;width:36vw;height:calc(100dvh - 170px);opacity:1!important;mask-image:none!important;overflow:visible}
+ body.pose-stage-active .studio-world .studio-backdrop{position:absolute;right:0;bottom:0;width:28vw;height:32dvh;object-fit:contain;object-position:right bottom;opacity:.88}
+ body.pose-stage-active .studio-world .studio-key-light{position:absolute;right:26vw;bottom:0;width:9vw;height:38dvh;object-fit:contain;object-position:center bottom;opacity:1}
+ .app[data-scene="shooting"] .summary{top:44px!important}
+}
+@media(min-width:761px) and (max-width:1150px) and (min-height:621px){
+ body.pose-stage-active .studio-world{opacity:1;mask-image:none}
+ body.pose-stage-active .studio-world .studio-backdrop{width:100%;height:100%}
+ body.pose-stage-active .studio-world .studio-key-light{position:absolute;left:-8%;bottom:0;width:20%;height:65%}
+}
+
+@media(min-width:1151px) and (min-height:621px){
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .summary{top:100px!important;right:28px!important;width:292px!important;transform:none;padding:0!important}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .summary-head{display:none}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .inspiration-cloud{width:280px!important;height:368px!important;margin-top:0!important}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .inspiration-cloud .bubble-person{left:94px!important;top:125px!important;width:128px!important;height:128px!important;box-shadow:0 10px 30px #253b5010!important}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .inspiration-cloud .bubble-style{left:8px!important;top:8px!important}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .inspiration-cloud .bubble-background{left:174px!important;top:20px!important}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .inspiration-cloud .bubble-pose{left:12px!important;top:258px!important}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .inspiration-cloud .inspiration-bubble:not(.bubble-person){width:100px!important;height:100px!important}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .inspiration-cloud .inspiration-bubble.is-chosen:not(.bubble-person){background:#e2edf5!important;border:1px solid #ffffffa8!important;box-shadow:0 8px 24px #3d60780a!important}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .inspiration-cloud .inspiration-bubble.is-empty{background:#f7f7f4e8!important;border:1px dashed #bfcbd0!important}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .inspiration-bubble .bubble-kicker{display:none!important}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .inspiration-bubble strong{font-size:13px!important}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .summary{top:44px!important}
+ .app:is([data-scene="styling"],[data-scene="backdrops"]) .bubble-person strong{position:absolute;bottom:16px;left:0;right:0;text-align:center}
+ body.inside-studio .studio-world:is([data-scene="styling"],[data-scene="backdrops"]){display:block!important;right:12px!important;left:auto!important;bottom:96px!important;top:auto!important;width:280px;height:220px;opacity:1;mask-image:none;translate:none}
+ body.inside-studio .studio-world[data-scene="backdrops"]{width:270px;height:215px}
+ .app[data-scene="backdrops"] .swatch-book{width:calc(100% - 310px);padding:32px 24px 34px 8px;gap:22px;height:clamp(280px,46dvh,440px);align-self:center;mask-image:linear-gradient(to right,#000 0%,#000 calc(100% - 40px),transparent)}
+ .app[data-scene="backdrops"] .swatch-book .bg-card{flex:0 0 calc((100% - 70px)/4.3);margin-right:0;height:calc(100% - 24px);transform:translateY(-5px) rotate(-2deg)!important;transform-origin:50% 65%;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+ .app[data-scene="backdrops"] .swatch-book .bg-card:nth-child(2n){transform:translateY(8px) rotate(1.5deg)!important}
+ .app[data-scene="backdrops"] .swatch-book .bg-card:nth-child(3n){transform:translateY(-10px) rotate(-.6deg)!important}
+ .app[data-scene="backdrops"] .swatch-book .bg-card:hover,.app[data-scene="backdrops"] .swatch-book .bg-card.selected{transform:translateY(-14px) rotate(0)!important}
+ .app[data-scene="backdrops"] .content{padding-right:0!important}
+ .app[data-scene="backdrops"] .swatch-controls{width:calc(100% - 310px);justify-content:center}
+ .app[data-scene="backdrops"] .bg-label small{display:none}
+}
+@media(min-width:1151px) and (min-height:621px){
+ .app.has-inspiration[data-scene="backdrops"] .workspace:not(.studio-workspace) .content{padding-right:0!important}
+ .app.has-inspiration[data-scene="backdrops"] .swatch-book{align-self:flex-start;width:calc(100% - 310px)!important}
+}
+
+/* Ambient rooms fill the scene; navigation and settings stay in the foreground. */
+.departing-scene{background:transparent!important}
+.departing-scene .summary{display:none!important}
+body.inside-studio .studio-world:is([data-scene="styling"],[data-scene="backdrops"]){display:block!important;inset:0 0 88px!important;width:100vw!important;height:calc(100dvh - 88px)!important;opacity:1;mask-image:none;translate:none}
+body.inside-studio .studio-world:is([data-scene="styling"],[data-scene="backdrops"]) img{width:100%;height:100%;object-fit:cover;object-position:center;opacity:.23}
+body.inside-studio .studio-world:is([data-scene="styling"],[data-scene="backdrops"]):after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#f7f7f430,transparent 65%,#f7f7f4aa);pointer-events:none}
+.summary{z-index:110!important}

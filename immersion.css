@@ -1,0 +1,33 @@
+/* Original scenes, typography, paper and layout are intentionally retained. */
+.style-card,.bg-card,.gender-card,.card,.direction{--paper-rest:-1deg}
+.style-card:nth-child(2n),.bg-card:nth-child(2n),.card:nth-child(2n),.direction:nth-child(2n){--paper-rest:1.5deg}
+.style-card:nth-child(3n),.bg-card:nth-child(3n),.card:nth-child(3n){--paper-rest:-.6deg}
+@media(hover:hover) and (pointer:fine){
+ body .style-carousel .style-card:hover,body .swatch-book .bg-card:hover{transform:translateY(-10px) rotate(var(--paper-rest))!important;z-index:3}
+ .cards .card:hover,.direction:hover{transform:translateY(-7px) rotate(var(--paper-rest));z-index:3}
+}
+body .style-carousel .style-card.selected,body .swatch-book .bg-card.selected{transform:translateY(-7px) rotate(var(--paper-rest))!important;z-index:2}
+.cards .card.selected,.direction.selected{transform:translateY(-5px) rotate(var(--paper-rest));z-index:2}
+button:focus-visible,[tabindex="0"]:focus-visible{outline:3px solid #8f6245;outline-offset:5px}
+[data-density-step]{position:relative}
+[data-density-step]::before{content:"";position:absolute;inset:-9px}
+@media(prefers-reduced-motion:reduce){.style-card,.bg-card,.card,.direction{transition:none!important}}
+/* The 1536×1024 stamp sheet has 4×2 cells: each cell is 384×512.
+   Keep its 3:4 cell ratio independent of the paper card dimensions. */
+main[data-step="2"] .mood-art{position:relative;background-image:none!important;overflow:visible}
+main[data-step="2"] .mood-art::before{content:"";position:absolute;top:0;left:50%;height:100%;width:auto;aspect-ratio:3/4;transform:translateX(-50%);background-image:url('cartoon/assets/emotion-ink-transparent-v2.webp');background-size:400% 200%;background-position:inherit;background-repeat:no-repeat;pointer-events:none}
+/* Stamps share a baseline, with only a small hand-placed variation. */
+main[data-step="2"] .card{--stamp-offset:0px;--stamp-angle:-.5deg;transform:translateY(var(--stamp-offset)) rotate(var(--stamp-angle))!important;transform-origin:center 70%}
+main[data-step="2"] .card:nth-child(2n){--stamp-offset:2px;--stamp-angle:.5deg}
+main[data-step="2"] .card:nth-child(3n){--stamp-offset:-2px;--stamp-angle:-.25deg}
+@media(hover:hover) and (pointer:fine){main[data-step="2"] .card:hover{transform:translateY(calc(var(--stamp-offset) - 2px)) rotate(var(--stamp-angle)) scale(1.01)!important}}
+main[data-step="2"] .card.selected{transform:translateY(var(--stamp-offset)) rotate(var(--stamp-angle))!important}
+/* Fit the print frame to the full photo, instead of filling a wide grid cell. */
+body .history-grid .history-photo{box-sizing:border-box;width:min(100%,calc(var(--history-tile,240px)*var(--photo-ratio,1)))!important;height:auto!important;aspect-ratio:var(--photo-ratio,1)!important;justify-self:center;align-self:start;background:transparent!important}
+/* Second-row sprite cells have 70px less transparent space above the ink.
+   Offset the rendered cell without stretching or moving its caption. */
+main[data-step="2"] .card:nth-child(n+5) .mood-art::before{transform:translate(-50%,13.7%)}
+main[data-step="2"] h1{font-size:clamp(28px,2.5vw,34px);line-height:1.25;font-weight:600;letter-spacing:-.025em;margin-bottom:26px}
+main[data-step="2"] .caption strong{font-size:20px;line-height:1.4;font-weight:600;letter-spacing:.02em}
+main[data-step="2"] .caption small{font-size:14px;line-height:1.55;margin-top:6px;color:#58695f}
+@media(max-width:700px){main[data-step="2"] h1{font-size:28px;margin-bottom:20px}main[data-step="2"] .caption strong{font-size:19px}main[data-step="2"] .caption small{font-size:14px}}
