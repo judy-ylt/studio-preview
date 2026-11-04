@@ -1,0 +1,7 @@
+/* Match the small, quiet help circle already used in commercial photography. */
+body .studio-help{display:inline-grid;place-items:center;vertical-align:middle;flex:none;width:20px;height:20px;padding:0;margin:0 0 0 10px;border:1px solid #c8cecb;border-radius:50%;background:#fff;color:#6c7773;font:600 12px/1 -apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:normal;cursor:pointer;box-shadow:none;transform:none}
+body .studio-help:hover,body .studio-help:focus-visible{color:#004896;border-color:#004896}
+body .studio-help:focus-visible{outline:2px solid #004896;outline-offset:3px}
+.studio-help-popover{position:fixed;z-index:1000;box-sizing:border-box;width:max-content;max-width:min(280px,calc(100vw - 24px));padding:11px 14px;border-radius:12px;background:#24302d;color:#fff;box-shadow:0 5px 20px #18231d26;font:400 13px/1.7 -apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif;overflow-wrap:anywhere;text-align:left}
+.studio-help-popover[hidden]{display:none}
+@media(pointer:coarse){body .studio-help{width:28px;height:28px}}

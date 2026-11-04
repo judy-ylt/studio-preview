@@ -4,9 +4,17 @@ const styles=[['水彩插畫','柔和・手繪'],['扁平插畫','簡潔・清�
 const moods=[['開心','愉快・放鬆'],['傷心','低落・難過'],['生氣','不滿・抗議'],['喜歡','喜愛・心動'],['驚訝','意外・驚喜'],['想睡','疲倦・放空'],['得意','自信・滿足'],['疑惑','不解・好奇']];
 const poses=['揮手打招呼','雙手歡呼','比讚','比耶','雙手抱胸','托腮思考','雙手捧臉','鞠躬致謝'];
 const texts=['謝謝你','辛苦了','收到','加油','太棒了','早安','自訂文字','不要文字'];
-const state={step:0,completed:0,photo:null,style:null,mood:null,pose:null,text:null,custom:'',font:'sans-serif',placement:'left',historyView:'comfortable',historyColumns:2};
+const state={step:0,completed:0,photo:null,style:null,mood:null,pose:null,text:null,custom:'',font:'sans-serif',placement:'left',level:'close',textX:50,textY:15,historyView:'comfortable',historyColumns:2};
 const uploadedPhotos=[];const uploadedDates=new Map();
 let photoUrl=null,previous=0,physics;const carouselOffsets={};
+/* Points are placeholders until pricing is decided (11/2 meeting). */
+const pointBalance=200,pointsPerImage=20;
+/* Each style comes in two levels, one artwork per style × level in assets/styles/ (11/3). */
+const levels={close:['像本人','認得出是你'],bold:['更有風格','變化大、更有個性']};
+const styleFile=i=>`assets/styles/style-${String(i+1).padStart(2,'0')}-${state.level}.webp`;
+const styleName=()=>state.style===null?'':`${styles[state.style][0]}・${levels[state.level][0]}`;
+const regenReasons=['不像我','風格不對','表情或動作不對','文字不對','其他'];
+const silhouette='<svg class="text-silhouette" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="92" r="34"/><path d="M38 200c0-44 27-70 62-70s62 26 62 70z"/></svg>';
 const fontFamily=()=>state.font==='cursive'?'Kaiti TC, STKaiti, KaiTi, cursive':state.font;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const chosenText=()=>state.text===7?'':state.text===6?state.custom:state.text===null?'':texts[state.text];
@@ -29,12 +37,12 @@ function render(){
  document.body.dataset.step=state.step;updateSceneTools(state.step);
  const main=$('#main');main.dataset.step=state.step;main.innerHTML=`<h1>${state.step===0?'從一張照片，開始創作':labels[state.step]}</h1><section class="stage" id="stage"></section>`;
  const stage=$('#stage');
- if(state.step===0)stage.innerHTML=`<div class="upload upload-history"><div class="dropzone" id="dropzone">${state.photo?`<img src="${state.photo}" alt="已選人物照片"><button class="secondary" id="upload">更換照片</button>`:'<h2>上傳人物照片</h2><p>拖曳照片，或選擇 JPG、PNG、WebP<br>最大 15 MB</p><button class="primary" id="upload">選擇照片</button>'}<p id="error" role="alert"></p></div><div class="history-panel"><div class="history-header"><h2>曾上傳的照片</h2><div class="thumbnail-control" role="group" aria-label="調整縮圖大小"><button type="button" class="thumbnail-icon small-grid" data-density-step="-1" aria-label="縮小縮圖" title="縮小縮圖"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></button><input class="thumbnail-slider" type="range" min="0" max="3" step="1" value="${5-state.historyColumns}" style="--slider-progress:${(5-state.historyColumns)/3*100}%" aria-label="縮圖大小" aria-valuetext="每排 ${state.historyColumns} 張"><button type="button" class="thumbnail-icon large-grid" data-density-step="1" aria-label="放大縮圖" title="放大縮圖"><i></i><i></i><i></i><i></i></button></div></div><div class="history-grid" style="--history-columns:${state.historyColumns}">${[...uploadedPhotos,...Array.from({length:6},(_,i)=>'assets/history-'+i+'.jpg')].map((src,i)=>`<button class="history-photo ${state.photo===src?'selected':''}" data-history="${i}" data-src="${src}" aria-label="選擇${i<uploadedPhotos.length?'已上傳':'範例'}照片 ${i+1}"><img src="${src}" alt="${i<uploadedPhotos.length?'已上傳':'範例'}人物照片"><span class="check">✓</span><span class="history-date">${uploadedDates.get(src)||'10 / 06 · 範例'}</span></button>`).join('')}</div></div></div>`;
- if(state.step===1)stage.innerHTML=`<div class="cards" aria-label="藝術風格，可左右拖曳">${styles.map((s,i)=>card(`<div class="art ${i===6?'geometric-airbrush-art':''}" style="${i===6?'background-image:url(assets/geometric-airbrush-v5.webp);background-size:contain;background-position:center;background-repeat:no-repeat':bgStyle(i)}" role="img" aria-label="${s[0]}示意"></div>`,...s,i,'style')).join('')}</div>`;
+ if(state.step===0)stage.innerHTML=`<div class="upload upload-history"><div class="dropzone" id="dropzone">${state.photo?`<img src="${state.photo}" alt="已選人物照片"><button class="secondary" id="upload">更換照片</button>`:'<h2>上傳人物照片</h2><p>JPG／PNG／WebP，15 MB 以內</p><button class="primary" id="upload">選擇照片</button>'}<p id="error" role="alert"></p></div><div class="history-panel"><div class="history-header"><h2>曾上傳的照片</h2><div class="thumbnail-control" role="group" aria-label="調整縮圖大小"><button type="button" class="thumbnail-icon small-grid" data-density-step="-1" aria-label="縮小縮圖" title="縮小縮圖"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></button><input class="thumbnail-slider" type="range" min="0" max="3" step="1" value="${5-state.historyColumns}" style="--slider-progress:${(5-state.historyColumns)/3*100}%" aria-label="縮圖大小" aria-valuetext="每排 ${state.historyColumns} 張"><button type="button" class="thumbnail-icon large-grid" data-density-step="1" aria-label="放大縮圖" title="放大縮圖"><i></i><i></i><i></i><i></i></button></div></div><div class="history-grid" style="--history-columns:${state.historyColumns}">${[...uploadedPhotos,...Array.from({length:6},(_,i)=>'assets/history-'+i+'.jpg')].map((src,i)=>`<button class="history-photo ${state.photo===src?'selected':''}" data-history="${i}" data-src="${src}" aria-label="選擇${i<uploadedPhotos.length?'已上傳':'範例'}照片 ${i+1}"><img src="${src}" alt="${i<uploadedPhotos.length?'已上傳':'範例'}人物照片"><span class="check">✓</span><span class="history-date">${uploadedDates.get(src)||'10 / 06 · 範例'}</span></button>`).join('')}</div></div></div>`;
+ if(state.step===1)stage.innerHTML=`<div class="level-switch" role="radiogroup" aria-label="風格程度">${Object.entries(levels).map(([k,[name,desc]])=>`<button role="radio" data-level="${k}" aria-checked="${state.level===k}" class="${state.level===k?'selected':''}"><strong>${name}</strong><small>${desc}</small></button>`).join('')}</div><div class="cards level-${state.level}" aria-label="藝術風格，可左右拖曳">${styles.map((s,i)=>card(`<div class="art style-art" style="--art:url('${styleFile(i)}')" role="img" aria-label="${s[0]}・${levels[state.level][0]}示意"></div>`,...s,i,'style')).join('')}</div>`;
  if(state.step===2)stage.innerHTML=`<div class="cards" aria-label="情緒選項，可左右拖曳">${moods.map((s,i)=>card(`<div class="art mood-art" style="background-position:${i%4/3*100}% ${Math.floor(i/4)*100}%" role="img" aria-label="${s[0]}印泥表情印章"></div>`,...s,i,'mood')).join('')}</div>`;
  if(state.step===3)stage.innerHTML=`<div class="cards" aria-label="動作素描，可左右拖曳">${poses.map((s,i)=>card(`<div class="art pose-art" style="background-position:${i%4/3*100}% ${Math.floor(i/4)*100}%;background-size:400% 200%" role="img" aria-label="${s}素描"></div>`,s,'',i,'pose')).join('')}</div>`;
- if(state.step===4)stage.innerHTML=`<div class="text-selection"><div class="text-grid">${texts.map((s,i)=>`<button class="text-card ${state.text===i?'selected':''}" data-choice="text" data-value="${i}" aria-pressed="${state.text===i}">${s}</button>`).join('')}</div><div class="text-settings">${state.text===6?'<input id="custom" maxlength="16" aria-label="自訂文字" placeholder="輸入文字，最多 16 字" value="'+esc(state.custom)+'">':''}</div></div>`;
- if(state.step===5)stage.innerHTML=`<div class="result"><div class="hanging-art"><div class="display-cord"></div><i class="wood-clip clip-left"></i><i class="wood-clip clip-right"></i><div class="print"><canvas class="sticker-canvas" aria-label="卡通照與人物旁文字"></canvas></div></div><div class="result-info"><h2>卡通風格預覽</h2><p>${styles[state.style][0]}・${moods[state.mood][0]}・${poses[state.pose]}</p><p class="hint">此為風格示例；尚未套用你的照片、情緒、動作與文字。</p><div class="result-actions"><button class="primary" id="download">下載示例</button><button class="secondary" id="regenerate">重新載入示例</button></div><div class="result-links"><button data-return="1">調整設定</button><button id="restart">重新開始</button></div><p class="result-status" id="resultStatus" role="status"></p></div></div>`;
+ if(state.step===4){if(state.text===null)state.text=6;const none=state.text===7;stage.innerHTML=`<div class="text-board"><div class="text-canvas" id="textCanvas">${silhouette}<div class="text-box" id="textBox" style="left:${state.textX}%;top:${state.textY}%" ${none?'hidden':''}><button class="text-grip" id="textGrip" aria-label="移動文字框，可用方向鍵" title="拖曳移動"><i></i><i></i><i></i><i></i><i></i><i></i></button><input id="custom" maxlength="16" aria-label="卡通照上的文字" placeholder="點這裡輸入文字" value="${esc(state.custom)}"></div>${none?'<button class="text-add" id="textAdd">＋ 加入文字</button>':''}<span class="text-ratio">1:1</span></div><div class="text-side"><h2>常用句</h2><div class="phrase-chips">${texts.slice(0,6).map((t,k)=>`<button data-phrase="${k}" aria-pressed="${!none&&state.custom===t}" class="${!none&&state.custom===t?'selected':''}">${t}</button>`).join('')}</div><button class="text-none ${none?'selected':''}" id="textNone" aria-pressed="${none}">不要文字</button><p class="hint">點畫面上的文字框直接輸入，最多 16 字；拖曳左側把手移動位置。</p><p class="point-cost"><strong>製作 1 張・${pointsPerImage} 點</strong><span>示意價格</span></p></div></div>`}
+ if(state.step===5)stage.innerHTML=`<div class="result"><div class="hanging-art"><div class="display-cord"></div><i class="wood-clip clip-left"></i><i class="wood-clip clip-right"></i><div class="print"><canvas class="sticker-canvas" aria-label="卡通照與人物旁文字"></canvas></div></div><div class="result-info"><span class="result-eyebrow">風格示例</span><h2 class="result-title">${styles[state.style][0]}</h2><dl class="result-specs"><div><dt>程度</dt><dd>${levels[state.level][0]}</dd></div><div><dt>情緒</dt><dd>${moods[state.mood][0]}</dd></div><div><dt>動作</dt><dd>${poses[state.pose]}</dd></div><div><dt>文字</dt><dd>${chosenText()?esc(chosenText()):'不加文字'}</dd></div></dl><p class="result-note">文字與位置已套用；人物仍是風格示例，尚未套用你的照片、情緒與動作。</p><div class="result-actions"><button class="primary" id="download">下載示例</button><button class="secondary" id="regenerate" aria-expanded="false" aria-controls="regenPanel">重新生成</button></div><div class="regen-panel" id="regenPanel" hidden><p><strong>哪裡不滿意？</strong>選一個原因，重新生成時會優先調整。</p><div class="regen-reasons">${regenReasons.map(r=>`<button data-regen="${r}">${r}</button>`).join('')}</div><p class="hint">重新生成的免費次數或折扣待定；示範模式不扣點。</p></div><div class="result-links"><button data-return="1">調整設定</button><button id="restart">重新開始</button></div><p class="result-status" id="resultStatus" role="status"></p></div></div>`;
  if(state.step>=1&&state.step<=3)stage.insertAdjacentHTML('beforeend','<div class="arrows"><button id="prevCards" aria-label="上一組">‹</button><button id="nextCards" aria-label="下一組">›</button></div>');
  $('#steps').innerHTML=labels.map((label,i)=>`<button data-nav="${i}" ${i>state.completed?'disabled':''} class="${i===state.step?'active':''}" ${i===state.step?'aria-current="step"':''}><strong>${i<state.step?'✓':String(i+1).padStart(2,'0')}</strong><span>${label}</span></button>`).join('');
  $('#back').hidden=state.step===0||state.step===5;$('#next').hidden=state.step===5;$('#next').disabled=!enabled();$('#next').textContent=state.step===5?'重新開始':state.step===4?'查看示例':'下一步';
@@ -50,7 +58,7 @@ function render(){
 function go(step){state.step=step;state.completed=Math.max(state.completed,step);render()}
 function renderBubbles(){
  const box=$('#bubbles');box.hidden=state.step===0||state.step===5;
- const entries=[['style',1,'風格',state.style===null?'選擇風格':styles[state.style][0]],['mood',2,'情緒',state.mood===null?'選擇情緒':moods[state.mood][0]],['pose',3,'動作',state.pose===null?'選擇動作':poses[state.pose]],['text',4,'文字',state.text===null?'選擇文字':state.text===7?'不要文字':chosenText()||'自訂文字']];
+ const entries=[['style',1,'風格',state.style===null?'選擇風格':styleName()],['mood',2,'情緒',state.mood===null?'選擇情緒':moods[state.mood][0]],['pose',3,'動作',state.pose===null?'選擇動作':poses[state.pose]],['text',4,'文字',state.text===null?'選擇文字':state.text===7?'不要文字':chosenText()||'自訂文字']];
  box.innerHTML=`<button class="bubble person" data-nav="0" aria-label="更換人物照片"><img src="${state.photo||'assets/sample.jpg'}" alt="已選人物"><strong>人物照片</strong></button>`+entries.map(([key,step,label,value])=>`<button class="bubble bubble-${key} ${state[key]!==null?'chosen':''}" data-nav="${step}" ${step>state.completed?'disabled':''} aria-label="調整${label}：${esc(value)}"><small>${label}</small><strong>${esc(value)}</strong></button>`).join('');
  startPhysics();
 }
@@ -58,25 +66,27 @@ function bind(){
  const slider=document.querySelector('.thumbnail-slider');if(slider)slider.oninput=()=>{state.historyColumns=5-Number(slider.value);const grid=document.querySelector('.history-grid');grid.style.setProperty('--history-columns',state.historyColumns);slider.setAttribute('aria-valuetext','每排 '+state.historyColumns+' 張');slider.style.setProperty('--slider-progress',Number(slider.value)/3*100+'%');if(typeof sizePhotoLibrary==='function')sizePhotoLibrary()};
  document.querySelectorAll('[data-history-view]').forEach(el=>el.onclick=()=>{state.historyView=el.dataset.historyView;render()});
  if($('#restart'))$('#restart').onclick=()=>$('#next').onclick();
- if($('#regenerate'))$('#regenerate').onclick=async()=>{const button=$('#regenerate');button.disabled=true;try{await drawSticker($('.sticker-canvas'));$('#resultStatus').textContent='示例已載入；尚未套用你的照片與其他設定。'}catch{$('#resultStatus').textContent='載入失敗，請再試一次。'}finally{button.disabled=false}};
- document.querySelectorAll('[data-choice]').forEach(el=>{el.onclick=()=>{state[el.dataset.choice]=Number(el.dataset.value);render()};if(el.dataset.choice==='style')el.onpointerenter=()=>updateSceneTools(1,Number(el.dataset.value))});
- if(state.step===1&&$('.cards'))$('.cards').onpointerleave=()=>updateSceneTools(1,state.style??0);
+ if($('#regenerate'))$('#regenerate').onclick=()=>{const panel=$('#regenPanel'),open=panel.hidden;panel.hidden=!open;$('#regenerate').setAttribute('aria-expanded',String(open));if(open)panel.querySelector('button').focus()};
+ document.querySelectorAll('[data-regen]').forEach(el=>el.onclick=async()=>{$('#regenPanel').hidden=true;$('#regenerate').setAttribute('aria-expanded','false');try{await drawSticker($('.sticker-canvas'));$('#resultStatus').textContent=`已記錄原因：${el.dataset.regen}。示範模式只重新載入示例。`}catch{$('#resultStatus').textContent='載入失敗，請再試一次。'}});
+ document.querySelectorAll('[data-level]').forEach(el=>el.onclick=()=>{state.level=el.dataset.level;render()});
+ document.querySelectorAll('[data-choice]').forEach(el=>el.onclick=()=>{state[el.dataset.choice]=Number(el.dataset.value);render()});
  document.querySelectorAll('[data-nav]').forEach(el=>el.onclick=()=>go(Number(el.dataset.nav)));
  document.querySelectorAll('[data-return]').forEach(el=>el.onclick=()=>go(Number(el.dataset.return)));
  if($('#upload'))$('#upload').onclick=()=>$('#file').click();
  document.querySelectorAll('[data-history]').forEach(el=>el.onclick=()=>{state.photo=el.dataset.src;render()});
  if($('#sample'))$('#sample').onclick=()=>{state.photo='assets/sample.jpg';render()};
+ bindTextBoard();
  if($('#custom'))$('#custom').oninput=e=>{state.custom=e.target.value;$('#next').disabled=!enabled();const textBubble=$('.bubble-text strong');if(textBubble)textBubble.textContent=chosenText()||'自訂文字';if($('.sticker-canvas'))drawSticker($('.sticker-canvas'))};
  if($('#font')){$('#font').value=state.font;$('#font').onchange=e=>{state.font=e.target.value;drawSticker($('.sticker-canvas'))}}
  document.querySelectorAll('[data-placement]').forEach(el=>el.onclick=()=>{state.placement=el.dataset.placement;document.querySelectorAll('[data-placement]').forEach(b=>{b.classList.toggle('active',b===el);b.setAttribute('aria-pressed',b===el)});drawSticker($('.sticker-canvas'))});
  if($('#download'))$('#download').onclick=download;
  if($('#dropzone')){const zone=$('#dropzone');zone.ondragover=e=>e.preventDefault();zone.ondrop=e=>{e.preventDefault();loadPhoto(e.dataTransfer.files[0])}}
 }
-async function loadPhoto(file){if(!file)return;if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>15*1024*1024){$('#error').textContent='請選擇 15 MB 以內的 JPG、PNG 或 WebP';return}photoUrl=URL.createObjectURL(file);const candidate=photoUrl,im=new Image();try{im.src=candidate;await im.decode()}catch{URL.revokeObjectURL(candidate);$('#error').textContent='無法讀取這張圖片，請選擇其他檔案。';return}uploadedPhotos.unshift(photoUrl);uploadedDates.set(photoUrl,new Intl.DateTimeFormat('zh-TW',{month:'2-digit',day:'2-digit'}).format(new Date()));state.photo=photoUrl;render()}
+async function loadPhoto(file){if(!file)return;if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>15*1024*1024){$('#error').textContent='請選擇 15 MB 以內的 JPG、PNG 或 WebP';return}photoUrl=URL.createObjectURL(file);const candidate=photoUrl,im=new Image();try{im.src=candidate;await im.decode()}catch{URL.revokeObjectURL(candidate);$('#error').textContent='無法讀取這張圖片，請選擇其他檔案。';return}uploadedPhotos.unshift(photoUrl);uploadedDates.set(photoUrl,new Intl.DateTimeFormat('zh-TW',{month:'2-digit',day:'2-digit'}).format(new Date()).replace('/',' / '));state.photo=photoUrl;render()}
 $('#file').onchange=e=>loadPhoto(e.target.files[0]);
 $('#back').onclick=()=>go(Math.max(0,state.step-1));
 $('#next').onclick=()=>{if(!enabled())return;if(state.step===5){photoUrl=null;Object.keys(carouselOffsets).forEach(key=>delete carouselOffsets[key]);Object.assign(state,{step:0,completed:0,photo:null,style:null,mood:null,pose:null,text:null,custom:''});render()}else go(state.step+1)};
-function bindDrag(){const track=$('.cards');if(!track)return;let down=false,moved=false,x=0,scroll=0;
+function bindDrag(){const track=$('#main .cards');if(!track)return;let down=false,moved=false,x=0,scroll=0;
  track.onpointerdown=e=>{if(e.pointerType==='touch'||e.button!==0)return;down=true;moved=false;x=e.clientX;scroll=track.scrollLeft};
  track.onpointermove=e=>{if(!down)return;const dx=e.clientX-x;if(Math.abs(dx)>5){if(!moved)track.setPointerCapture(e.pointerId);moved=true;track.classList.add('dragging');track.scrollLeft=scroll-dx;e.preventDefault()}};
  const end=e=>{down=false;track.classList.remove('dragging');if(track.hasPointerCapture(e.pointerId))track.releasePointerCapture(e.pointerId);setTimeout(()=>moved=false,0)};track.onpointerup=end;track.onpointercancel=end;
@@ -92,9 +102,20 @@ function startPhysics(){cancelAnimationFrame(physics);const box=$('#bubbles');if
 async function drawSticker(canvas){
  if(!canvas)return;
  const image=new Image();
- await new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=()=>reject(new Error('示例圖片載入失敗，請重新載入'));image.src=state.style===6?'assets/geometric-airbrush-v5.webp':'assets/finished-cartoon-v4.webp'});
- canvas.width=image.width;canvas.height=image.height;
- canvas.getContext('2d').drawImage(image,0,0);canvas.dataset.ready='true';
+ await new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=()=>reject(new Error('示例圖片載入失敗，請重新載入'));image.src=styleFile(state.style||0)});
+ /* The chosen style × level artwork is the result; the user's text is drawn on top. */
+ const size=1024,ctx=canvas.getContext('2d');canvas.width=canvas.height=size;
+ ctx.fillStyle='#f8f4ed';ctx.fillRect(0,0,size,size);
+ ctx.drawImage(image,0,0,size,size);
+ const text=chosenText().trim();
+ if(text){
+  try{await document.fonts.load(`${Math.round(size*.08)}px Huninn`,text)}catch{}
+  ctx.font=`${Math.round(size*.08)}px Huninn,"PingFang TC",sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.lineJoin='round';
+  const x=state.textX/100*size,y=state.textY/100*size;
+  ctx.lineWidth=size*.022;ctx.strokeStyle='#fffdf8';ctx.strokeText(text,x,y);
+  ctx.fillStyle='#2c2b27';ctx.fillText(text,x,y);
+ }
+ canvas.dataset.ready='true';
 }
 
 async function download(){
@@ -104,22 +125,38 @@ async function download(){
 const themes=[['深藍','#004896','#2769ad','#dce8f5'],['橄欖','#546342','#73825e','#e1e7d9'],['陶土','#805447','#a37464','#efe0d8'],['莓紫','#6b526c','#8a6d8c','#e9dfea']];
 $('#themes').innerHTML=themes.map((t,i)=>`<button data-theme="${i}" title="${t[0]}" aria-label="${t[0]}" style="background:${t[1]}"></button>`).join('');
 document.querySelectorAll('[data-theme]').forEach(el=>el.onclick=()=>{const t=themes[Number(el.dataset.theme)];['--accent','--light','--soft'].forEach((key,i)=>document.documentElement.style.setProperty(key,t[i+1]))});
+document.body.insertAdjacentHTML('beforeend',`<div class="point-balance">剩餘 <strong>${pointBalance}</strong> 點<small>示意</small></div>`);
 render();
 
-function updateSceneTools(step,styleHint){
+function updateSceneTools(step){
  const layer=$('.desk-tools');if(!layer)return;layer.hidden=step===0||step===5;if(step===0||step===5)return;
- const media=styleHint??state.style??0,key=step===1?'media-'+media:'step-'+step;
+ const key='step-'+step;
  if(layer.dataset.key===key)return;layer.dataset.key=key;layer.dataset.step=step;
  layer.querySelectorAll('.tool-set.outgoing').forEach(el=>el.remove());const old=layer.querySelector('.tool-set');if(old)old.classList.add('outgoing');layer.querySelector('img')?.remove();
  const next=document.createElement('div');next.className='tool-set';
- let asset='single-pencil-v1.webp',position='center',size='contain';
- if(step===1){asset='style-media-v1.webp';position=([2.17,50,97.83][media%3])+'% '+([4.17,95.83][Math.floor(media/3)])+'%';size='330% 220%'}
- if(step===1&&media===6){asset='airbrush-tool-v1.webp';position='center';size='contain'}
- if(step===2)asset='round-craft-stamp-v2.webp';
- if(step===3)asset='pencil-eraser-v1.webp';
- if(step===4||step===5){asset='step-tools-v1.webp';position=(step%3/2*100)+'% '+(Math.floor(step/3)*100)+'%';size='300% 200%'}
+ let asset='single-pencil-v1.png',position='center',size='contain';
+ if(step===2)asset='round-craft-stamp-v2.png';
+ if(step===3)asset='pencil-eraser-v1.png';
+ if(step===4||step===5){asset='step-tools-v1.png';position=(step%3/2*100)+'% '+(Math.floor(step/3)*100)+'%';size='300% 200%'}
  next.style.backgroundImage='url("assets/'+asset+'")';next.style.backgroundPosition=position;next.style.backgroundSize=size;layer.append(next);
  if(matchMedia('(prefers-reduced-motion:reduce)').matches){old?.remove();return}
  if(old){const leave=old.animate([{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-12px)'}],{duration:220,fill:'forwards',easing:'ease-in'});leave.finished.then(()=>old.remove()).catch(()=>old.remove())}
  next.animate([{opacity:0,transform:'translateY(-16px) rotate(-1deg) scale(1.025)'},{opacity:1,transform:'translateY(0) rotate(0) scale(1)'}],{duration:550,delay:old?100:0,fill:'backwards',easing:'cubic-bezier(.2,.7,.2,1)'});
+}
+
+/* Text sits on a 1:1 canvas; the grip drags it, the input stays clickable for typing. */
+function bindTextBoard(){
+ const canvas=$('#textCanvas');if(!canvas)return;const box=$('#textBox'),grip=$('#textGrip');
+ const place=()=>{box.style.left=state.textX+'%';box.style.top=state.textY+'%'};
+ const clamp=()=>{state.textX=Math.max(12,Math.min(88,state.textX));state.textY=Math.max(8,Math.min(92,state.textY))};
+ const sizeInput=()=>{const input=$('#custom');input.style.width=Math.max(5,[...input.value].length+1)+'em'};sizeInput();
+ $('#custom').addEventListener('input',sizeInput);
+ let drag=null;
+ grip.onpointerdown=e=>{e.preventDefault();grip.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY,sx:state.textX,sy:state.textY,r:canvas.getBoundingClientRect()};box.classList.add('dragging')};
+ grip.onpointermove=e=>{if(!drag)return;state.textX=drag.sx+(e.clientX-drag.x)/drag.r.width*100;state.textY=drag.sy+(e.clientY-drag.y)/drag.r.height*100;clamp();place()};
+ grip.onpointerup=grip.onpointercancel=()=>{drag=null;box.classList.remove('dragging')};
+ grip.onkeydown=e=>{const d={ArrowLeft:[-2,0],ArrowRight:[2,0],ArrowUp:[0,-2],ArrowDown:[0,2]}[e.key];if(!d)return;e.preventDefault();state.textX+=d[0];state.textY+=d[1];clamp();place()};
+ document.querySelectorAll('[data-phrase]').forEach(el=>el.onclick=()=>{state.text=6;state.custom=texts[Number(el.dataset.phrase)];render()});
+ $('#textNone').onclick=()=>{state.text=state.text===7?6:7;render()};
+ if($('#textAdd'))$('#textAdd').onclick=()=>{state.text=6;render();$('#custom').focus()};
 }

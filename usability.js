@@ -12,5 +12,19 @@
  window.addEventListener('pageshow',e=>{if(project==='product'&&e.persisted){Object.assign(state,{step:0,completed:0,ratioChosen:false,returnTo:null});render()}});
  let restored=false;
  try{if(project==='product')sessionStorage.removeItem(key);const stored=JSON.parse(sessionStorage.getItem(key)||'null');if(stored?.version===1){const data=stored.state;for(const [k,v] of Object.entries(data||{})){if(!(k in state)||['photo','photos','boxes','busy','result'].includes(k))continue;if(typeof v==='number'&&!Number.isFinite(v))continue;if(k==='step'||k==='completed')continue;if(typeof v===typeof state[k]||state[k]===null)state[k]=v}state.busy=false;state.step=project==='portrait'?(state.gender?1:0):project==='cartoon'?0:(state.ratioChosen?1:0);state.completed=state.step;restoring=true;render();restoring=false;restored=true;}}catch{}
- progress();if(restored){const main=document.querySelector('main');const msg=document.createElement('p');msg.className='draft-restored';msg.setAttribute('role','status');msg.textContent='已恢復上次設定，請重新選擇照片。';main?.querySelector('h1')?.after(msg)}
+ progress();if(restored){/* 11/3: a floating toast, so it never pushes the page down and disappears on re-render (that shift looked like the page 'jumping'). */const msg=document.createElement('p');msg.className='draft-restored-toast';msg.setAttribute('role','status');msg.textContent='已恢復上次設定，請重新選擇照片。';document.body.append(msg);setTimeout(()=>msg.classList.add('is-leaving'),4500);setTimeout(()=>msg.remove(),5200)}
+})();
+/* 11/2 "aliveness": the first time a step with a card strip appears, nudge it right and back so people see there is more. Never repeats, stops on any touch, skipped for reduced motion. */
+(()=>{
+ const seen=new Set(),reduced=matchMedia('(prefers-reduced-motion: reduce)'),base=render;
+ render=function(...args){const out=base.apply(this,args);setTimeout(peek,900);return out};
+ function peek(){
+  if(reduced.matches)return;const track=document.querySelector('#styleCarousel,.cards');if(!track||!track.isConnected)return;
+  const key=location.pathname+'|'+(document.querySelector('.app')?.dataset.scene||document.querySelector('main')?.dataset.step||'');
+  const room=track.scrollWidth-track.clientWidth;if(seen.has(key)||room<40||track.scrollLeft>2)return;seen.add(key);
+  let stopped=false;const stop=()=>{stopped=true};['pointerdown','wheel','keydown','touchstart'].forEach(t=>track.addEventListener(t,stop,{once:true,passive:true}));
+  const dist=Math.min(150,room),ease=t=>1-Math.pow(1-t,3);track.classList.add('dragging');
+  const leg=(from,to,ms)=>new Promise(done=>{const t0=performance.now();const tick=now=>{if(stopped||!track.isConnected)return done();const t=Math.min(1,(now-t0)/ms);track.scrollLeft=from+(to-from)*ease(t);t<1?requestAnimationFrame(tick):done()};requestAnimationFrame(tick)});
+  leg(0,dist,650).then(()=>new Promise(r=>setTimeout(r,220))).then(()=>stopped?null:leg(dist,0,750)).finally(()=>track.classList.remove('dragging'));
+ }
 })();

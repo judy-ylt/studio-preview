@@ -1,6 +1,6 @@
 /* Pre-generated photographic angle references. Switching angle or color never calls an AI API.
    The uploaded product is not reconstructed: the neutral cylinder is a scene reference only. */
-const angleSceneAssets={three:'assets/scene-library-v1.webp',front:'assets/scenes-front-v1.webp',top:'assets/scenes-top-v1.webp',low:'assets/scenes-low-v1.webp'};
+const angleSceneAssets={three:'assets/scene-library-v1.png',front:'assets/scenes-front-v1.png',top:'assets/scenes-top-v1.png',low:'assets/scenes-low-v1.png'};
 const angleSceneImages={};
 function loadAngleScene(angle){if(!angleSceneImages[angle])angleSceneImages[angle]=new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=()=>{delete angleSceneImages[angle];reject(new Error('angle image'))};im.src=angleSceneAssets[angle]||angleSceneAssets.three});return angleSceneImages[angle]}
 async function drawAnglePreview(){const canvas=document.querySelector('#anglePreview');if(!canvas)return;const angle=state.angle,scene=state.scene,warmth=state.warmth,request=(canvas._angleRequest||0)+1;canvas._angleRequest=request;canvas.dataset.loading='true';

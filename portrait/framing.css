@@ -28,3 +28,47 @@ body.portrait-framing .output-confirmation .ratio-btn{background:#f7f8f8ed!impor
 body.portrait-framing .output-confirmation .ratio-btn small{color:#516774!important;}
 body.portrait-framing .output-confirmation .ratio-btn:hover{background:#e9f0f6!important;border-color:#426985!important;}
 body.portrait-framing .output-confirmation .ratio-btn.selected{background:#fff!important;border-color:#004896!important;outline:2px solid #004896!important;outline-offset:2px;color:#004896!important;}
+
+/* 11/2 meeting: "all sizes" bundle, placeholder points, and the "why regenerate" panel (same pattern as cartoon and product). */
+body.portrait-framing .output-confirmation .ratio-btn.included{border-style:dashed!important;border-color:#004896!important;background:#ffffffd9!important}
+body.portrait-framing .output-confirmation .ratio-btn.all-sizes{max-width:132px}
+.all-sizes-mark{position:relative;width:30px;height:24px;display:block}
+.all-sizes-mark i{position:absolute;border:1.5px solid currentColor;border-radius:2px;background:#fff}
+.all-sizes-mark i:nth-child(1){left:0;top:4px;width:14px;height:18px}
+.all-sizes-mark i:nth-child(2){left:9px;top:0;width:18px;height:14px}
+.all-sizes-mark i:nth-child(3){left:13px;top:11px;width:16px;height:12px}
+.point-cost{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:4px 10px;margin:4px 0 0;font-size:12px;color:#526775}
+.point-cost strong{font-size:15px;color:#004896}
+.point-balance{position:fixed;top:22px;right:330px;z-index:30;display:flex;align-items:baseline;gap:4px;padding:8px 14px;border-radius:999px;background:#fffdf8e6;border:1px solid #fff;box-shadow:0 4px 14px #5048371a;font-size:13px;color:#344c57;backdrop-filter:blur(8px)}
+.point-balance strong{font-size:17px;color:#004896}
+.point-balance small{margin-left:4px;font-size:11px;color:#7a8580}
+@media(max-width:1150px){.point-balance{right:16px}}
+@media(max-width:700px){.point-balance{position:absolute;top:12px;padding:6px 11px;font-size:12px}}
+.regen-panel{margin-top:14px;padding:16px;border-radius:16px;background:#fffdf8d9;border:1px solid #fff;box-shadow:0 6px 18px #5048371a}
+.regen-panel p{margin:0;font-size:14px;line-height:1.7;color:#3d4a46}
+.regen-panel p strong{margin-right:6px}
+.regen-reasons{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.regen-reasons button{min-height:40px;padding:8px 14px;border:1px solid #d7dde2;border-radius:999px;background:#fff;color:#344c57;font-size:14px;cursor:pointer}
+.regen-reasons button:hover{border-color:#004896;color:#004896}
+.regen-panel .hint{font-size:12px;color:#63746a}
+.size-set{margin-top:22px}
+.size-set h3{margin:0 0 10px;font-size:14px;font-weight:600;color:#344c57}
+.size-set-grid{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.size-thumb{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0;border:0;background:none;cursor:pointer;color:#344c57;font-size:13px}
+.size-thumb canvas{display:block;max-width:96px;max-height:96px;width:auto;height:auto;box-shadow:0 4px 12px #243c4a24;background:#fff}
+.size-thumb small{margin-left:6px;color:#004896;font-size:12px}
+.size-thumb:hover canvas{outline:1.5px solid #004896;outline-offset:2px}
+/* The dropzone has a fixed height with overflow hidden: leave room for the file name and "更換照片". */
+@media(min-width:701px){body .upload-layout .dropzone .upload-preview{max-height:calc(clamp(260px,48dvh,500px) - 135px)!important}}
+/* Six size options (incl. "all sizes") need a wider row so the pixel sizes stay readable. */
+body.portrait-framing .output-confirmation .ratio-grid{width:min(100%,800px)}
+@media(max-width:700px){body.portrait-framing .output-confirmation .ratio-btn.all-sizes .all-sizes-mark,body.portrait-framing .output-confirmation .ratio-btn.all-sizes small{display:none}body.portrait-framing .output-confirmation .ratio-btn.all-sizes strong{font-size:12px!important;white-space:nowrap}.point-cost span{display:none}}
+/* 11/2: one transparent sketch per pose (assets/poses/pose-01…08.png) instead of slicing a 4×2 sheet — no paper tint, nothing cropped. */
+body .app .pose-style-card[data-pose] .pose-art{background-size:contain!important;background-position:center!important;background-repeat:no-repeat!important;background-color:transparent!important}
+body .app .pose-style-card[data-pose]{background:#fff!important}
+/* Pose step layout: arrows sit centred under the strip (as on the style step); first card no longer touches the left edge. */
+@media(min-width:761px) and (min-height:621px){
+ .app.has-inspiration[data-scene="shooting"] .pose-carousel{padding-left:30px!important}
+ /* the strip is drawn in perspective, so centre on the area left of the bubbles — same spot as the style step's arrows */
+ .app[data-scene="shooting"] .pose-scene>.carousel-controls{position:static!important;align-self:flex-start;width:calc(100vw - 330px);max-width:none;justify-content:center;margin:4px 0 0!important}
+}

@@ -35,3 +35,94 @@ body[data-step="5"] .result-info h2,body[data-step="5"] .result-info p{margin:0;
 body[data-step="5"] .result-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
 body[data-step="5"] .result-actions button{min-width:0;white-space:normal;line-height:1.5;}
 body[data-step="5"] .result-links{flex-wrap:wrap;}
+
+/* 11/2 visual pass, shared by all three studios: no helper text below 11px; secondary labels at 12px. Loaded last on every page. */
+body #steps button>span:last-child{font-size:12px!important}
+body .inspiration-cloud .bubble-kicker,body #bubbles .bubble small,body aside#summary .bubble small{font-size:11px!important}
+body.portrait-framing .output-confirmation .ratio-btn small{font-size:11px!important}
+body .history-caption,body .history-date,body .library-header span{font-size:12px!important}
+body .prototype-note{font-size:12px!important}
+body .source-tile small,body .combined-source-strip small{font-size:11px!important}
+body .wizard-eyebrow,body .scene-count,body .preview-only-note{font-size:12px!important}
+body .shot-open small,body .wizard-shot-cards small{font-size:11px!important}
+body .camera-options button span:last-child{font-size:12px!important}
+body .quick-align button,body .composition-summary span,body .selected-scene small{font-size:12px!important}
+body .bubble-scene small,body .bubble-composition small{font-size:11px!important}
+body #steps .step>span:last-child{font-size:12px!important}
+body .series-tabs small{font-size:11px!important}
+
+/* ── 11/2 type system, shared by all three studios ──────────────────────────
+   Six sizes, two weights. Anything not listed keeps its own size.
+   30 page title · 22 section/result title · 17 card/panel title · 15 body & buttons · 13 secondary · 12 caption */
+:root{--t-page:30px;--t-section:22px;--t-card:17px;--t-body:15px;--t-meta:13px;--t-caption:12px;--ink-strong:#22302c;--ink-body:#3b4945;--ink-muted:#66736f}
+
+/* Page title */
+body main h1,body #main h1{font-size:var(--t-page)!important;font-weight:600!important;letter-spacing:.01em;color:var(--ink-strong)}
+
+/* Footer: one size for actions, one for step labels, in every studio */
+html body :is(.bottom,footer) :is(#back,#next){font-size:var(--t-body)!important;font-weight:600!important}
+body #steps button strong,body #steps .step-number{font-size:var(--t-body)!important;font-weight:600!important}
+
+/* Panel / section titles */
+body .series-heading h2,body .combined-plan>h2,body .combined-history>h2,body .library-header h3,body .history-header h2,body .text-side h2,body .size-set h3,body .scene-settings h3,body .control-panel h3,body .wizard-review-heading h2{font-size:var(--t-card)!important;font-weight:600!important;color:var(--ink-strong)}
+body .wizard-shot-complete h2,body .wizard-shot-editor h2{font-size:var(--t-card)!important;font-weight:600!important}
+
+/* Card names and their tags */
+body .style-card .overlay strong,body .bg-label strong,body .card .caption strong,body .scene-card>span,body .selected-scene strong,body .wizard-review-grid h3,body .series-result-grid h3{font-size:var(--t-card)!important;font-weight:600!important}
+body .purpose-card strong{font-size:var(--t-section)!important;font-weight:600!important}
+body .purpose-card>span{font-size:var(--t-body)!important}
+body .card-tags span,body .card .caption small,body .purpose-card small,body .bg-label small,body .wizard-review-grid p,body .series-result-grid p,body .shot-open strong{font-size:var(--t-meta)!important;font-weight:400!important}
+body .shot-open strong{font-weight:600!important;color:var(--ink-strong)}
+
+/* Body helper text: one secondary size, one muted colour */
+body .hint,body p.hint,body .purpose-footnote,body .prototype-note,body .series-shared-note,body .output-size,body .result-note,body .library-header span,body .reference-direction-note{font-size:var(--t-meta)!important;line-height:1.7!important;color:var(--ink-muted)!important;font-weight:400!important}
+body .purpose-intro{font-size:var(--t-body)!important;color:var(--ink-body)}
+
+/* Secondary actions read as links, never larger than the content above them */
+body .result-links button,body .text-btn{font-size:14px!important;font-weight:400!important;color:var(--ink-body)!important}
+body .series-result-grid button,body .wizard-review-grid button{font-size:14px!important}
+
+/* Result column: eyebrow → title → specs → note → actions, aligned with the photo */
+body .result-layout{align-items:center!important}
+body .result-info{display:flex!important;flex-direction:column;gap:0!important;max-width:440px;width:100%}
+body .result-eyebrow{font-size:var(--t-caption);letter-spacing:.12em;color:var(--ink-muted);margin-bottom:6px}
+body .result-info .result-title{font-size:var(--t-section)!important;font-weight:600!important;color:var(--ink-strong);margin:0 0 16px!important;line-height:1.35}
+body .result-specs{margin:0 0 16px;padding:0;display:grid;gap:8px}
+body .result-specs>div{display:grid;grid-template-columns:3.5em 1fr;gap:12px;align-items:baseline}
+body .result-specs dt{font-size:var(--t-meta);color:var(--ink-muted)}
+body .result-specs dd{margin:0;font-size:var(--t-body);color:var(--ink-body)}
+body .result-info .result-note{margin:0 0 20px!important;padding-top:14px;border-top:1px solid #d9dcd6}
+body .result-info .result-actions{display:grid!important;grid-template-columns:1.3fr 1fr;gap:10px!important;margin:0!important}
+body .result-info .result-actions button{width:100%!important;min-width:0!important;min-height:48px!important;margin:0!important;font-size:var(--t-body)!important;font-weight:600!important;white-space:nowrap}
+body .result-info .result-actions .secondary{font-weight:400!important}
+body .result-info .regen-panel,body .result-info .size-set{margin-top:14px}
+body .result-info .result-links{margin-top:10px;gap:20px}
+body .result-info .result-status:empty{display:none}
+
+/* Portrait result sits on a busy studio photo: give the text column a quiet glass ground. */
+@media(min-width:701px){body.continuous-studio .result-info{background:#f8f8f5d9;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding:28px 30px!important;border-radius:20px;box-shadow:0 10px 30px #2a35301a}}
+body .wizard-shot-list>h2{font-size:var(--t-meta)!important;font-weight:600!important}
+/* Keep the result column inside the viewport even with the reasons panel and the size set open. */
+@media(min-width:701px){body .result-info{max-height:calc(100dvh - 250px);overflow:auto;scrollbar-width:thin}}
+body .size-set-grid{flex-wrap:nowrap!important;gap:10px!important}
+body .size-thumb canvas{max-width:64px!important;max-height:64px!important}
+
+/* 11/2 "aliveness": cards rest slightly tilted like loose prints; on hover they straighten, lift and cast a deeper shadow, with a small overshoot. */
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ body .style-carousel .style-card,body .swatch-book .bg-card,body main .cards .card{transition:transform .5s cubic-bezier(.22,1.25,.36,1),box-shadow .5s ease!important}
+ body .style-carousel .style-card{transform:rotate(-1.2deg)!important}
+ body .style-carousel .style-card:nth-child(2n){transform:rotate(1deg)!important}
+ body .style-carousel .style-card:nth-child(3n){transform:rotate(-.4deg)!important}
+ body .style-carousel .style-card:hover{transform:translateY(-14px) rotate(0) scale(1.025)!important;box-shadow:0 22px 34px #28435b2e!important;z-index:3}
+ body .style-carousel .style-card.selected{transform:translateY(-8px) rotate(0)!important}
+ body .swatch-book .bg-card:hover{box-shadow:0 20px 30px #28435b2b!important}
+ body .style-carousel .style-card canvas,body .style-carousel .style-card .pose-art{transition:scale .6s cubic-bezier(.22,1,.36,1)}
+ /* use the independent `scale` property: pose art is centred with transform:translateX(-50%), which must not be overwritten */
+ body .style-carousel .style-card:hover canvas,body .style-carousel .style-card:hover .pose-art{scale:1.03}
+}
+
+/* 11/3 restore notice floats above the page instead of sitting under the title (it used to push content down, then vanish on the next render). */
+.draft-restored-toast{position:fixed;left:50%;top:22px;z-index:60;transform:translateX(-50%);margin:0;padding:9px 18px;border-radius:999px;background:#fffffff2;border:1px solid #fff;box-shadow:0 6px 20px #2b2a2618;font-size:13px;color:#46595d;white-space:nowrap;animation:restore-in .35s ease-out both;transition:opacity .5s,transform .5s}
+.draft-restored-toast.is-leaving{opacity:0;transform:translate(-50%,-8px)}
+@keyframes restore-in{from{opacity:0;transform:translate(-50%,-8px)}to{opacity:1;transform:translate(-50%,0)}}
+@media(prefers-reduced-motion:reduce){.draft-restored-toast{animation:none;transition:none}}

@@ -42,7 +42,7 @@ body{background:#f9fcff}.eyebrow{color:#91a5be}.page-top p{color:#7f92aa}.page-t
 .gender-card,.style-carousel .style-card{box-shadow:0 12px 25px #3b64851a!important;border-color:#fff!important}.gender-card.selected,.style-carousel .style-card.selected{outline-color:#77aff9;box-shadow:0 15px 28px #357bd022!important}.check{background:#3584ee}
 .gender-card .profile-photo{object-position:center 30%}.gender-card:after{background:linear-gradient(transparent,#233d6266)}
 .bg-card{background:#ffffffed;box-shadow:0 8px 22px #3b648515!important}.bg-card.selected{outline-color:#77aff9}.bg-label{border-top-color:#c9d8eb}.bg-label strong{color:#3f5776}.bg-label small,.swatch-note{color:#8496ac}
-.pose-style-card{background:#f4f9ff!important}.pose-art{width:100%;height:calc(100% - 60px);background-image:url('assets/poses-rendered.webp');background-size:400% 200%;background-repeat:no-repeat;pointer-events:none}.pose-style-card .overlay{color:#587293}.pose-style-card .overlay small{opacity:.8}
+.pose-style-card{background:#f4f9ff!important}.pose-art{width:100%;height:calc(100% - 60px);background-image:url('assets/poses-rendered.png');background-size:400% 200%;background-repeat:no-repeat;pointer-events:none}.pose-style-card .overlay{color:#587293}.pose-style-card .overlay small{opacity:.8}
 .summary-head{color:#5d7ea4}.inspiration-bubble{background:radial-gradient(circle at 30% 22%,#ffffffed,#edf6ffc9)!important;border-color:#c9dff5b0!important;color:#4e709a;box-shadow:inset 0 1px 2px #fff,0 12px 28px #4d80b30d!important}.bubble-kicker{color:#8ea8c6}.inspiration-bubble small{color:#9aafc8}.cloud-hint{color:#94aac4!important}
 #steps:before{background:#d7e6f7}#steps:after{background:linear-gradient(90deg,#7eace6,#b8d3f7)}#steps .step-number,#steps .step.active .step-number{background:#cfdef1}#steps .step.done .step-number{background:#83ace1}#steps .step.active .step-number,#steps .step.active:before,#steps .step.active:after{background:#3989ed}
 .ratio-btn{color:#8da0b6}.ratio-btn small{color:#96a6b9}.ratio-btn.selected{color:#496a91}.ratio-btn:hover .ratio-shape,.ratio-btn.selected .ratio-shape{background:#9ba8b8;border-color:#9ba8b8!important}.settings-list{color:#8093ab}.demo-note{color:#96a6b9}
@@ -55,8 +55,8 @@ body{background:#f9fcff}.eyebrow{color:#91a5be}.page-top p{color:#7f92aa}.page-t
 .bubble-person:after{content:'';position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#18304baf);z-index:-1}
 .bubble-person .bubble-kicker,.bubble-person strong,.bubble-person small{color:white;text-shadow:0 1px 5px #18304b44}
 .bubble-person .bubble-kicker{margin-top:72px}.bubble-person strong{font-size:11px}.bubble-person small{display:none}
-.profile-silhouette{display:block;width:100%;height:100%;background:url('assets/anonymous-profiles.webp') left center/200% 100% no-repeat}
-.pose-art{background-image:url('assets/neutral-pose-sketches.webp');background-size:400% 200%}
+.profile-silhouette{display:block;width:100%;height:100%;background:url('assets/anonymous-profiles.png') left center/200% 100% no-repeat}
+.pose-art{background-image:url('assets/neutral-pose-sketches.png');background-size:400% 200%}
 .pose-art{background-size:400% 215%}
 /* Meeting alignment: localized context, simple confirmation, organic travel. */
 .style-carousel .overlay small{line-height:1.6;letter-spacing:0!important;font-size:10px!important;max-width:95%}
@@ -68,15 +68,15 @@ body{background:#f9fcff}.eyebrow{color:#91a5be}.page-top p{color:#7f92aa}.page-t
 @keyframes chain-settle{0%{opacity:.3;scale:1 .6}70%{scale:1 1.12}100%{opacity:1;scale:1 1}}
 @keyframes node-settle{0%{scale:.8}65%{scale:1.12}100%{scale:1}}
 .app[data-scene]{background:transparent!important;isolation:isolate}.app[data-scene]:before{display:none!important}.scene-layer{position:absolute;inset:0;z-index:-2;background:var(--room-image) center bottom/cover no-repeat;animation:room-travel .75s cubic-bezier(.22,.7,.25,1);pointer-events:none}.scene-layer:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#f9fcfff2,#f7fbffcd 45%,#f6faffaa)}
-.app[data-scene="entry"] .scene-layer{background-image:url('assets/entry-rooms.webp');background-size:200% 100%;background-position:left center}
-.app[data-scene="preparation"] .scene-layer{background-image:url('assets/entry-rooms.webp');background-size:200% 100%;background-position:right center}
+.app[data-scene="entry"] .scene-layer{background-image:url('assets/entry-rooms.png');background-size:200% 100%;background-position:left center}
+.app[data-scene="preparation"] .scene-layer{background-image:url('assets/entry-rooms.png');background-size:200% 100%;background-position:right center}
 .app[data-scene="review"] .scene-layer:after{background:#f9fcfff2}
 .workspace main{background:transparent}.step-arrival{animation:step-travel .55s cubic-bezier(.22,.7,.25,1)}
 @keyframes step-travel{from{opacity:0;translate:var(--travel) 0}to{opacity:1;translate:0 0}}
 @keyframes room-travel{from{opacity:.55;translate:var(--travel) 0}to{opacity:1;translate:0 0}}
 @media(max-width:760px){.output-confirmation{padding:15px 0;min-height:300px}.output-confirmation .output-ratios{gap:6px!important;overflow:auto}.output-confirmation .ratio-btn{min-width:100px}.organic-chain{height:60px}}
 @media(prefers-reduced-motion:reduce){.step-arrival,.scene-layer,.inspiration-bubble,.organic-chain,#steps .step-number{animation:none!important}}
-.pose-art{background-image:url('assets/gesture-studies.webp')}
+.pose-art{background-image:url('assets/gesture-studies.png')}
 /* Travel as one complete scene, including all foreground objects. */
 body{overflow:hidden}
 .scene-layer,.step-arrival{animation:none!important}
@@ -88,7 +88,7 @@ body{overflow:hidden}
 .gender-card:nth-child(2){margin-left:-16px}
 .gender-card:hover,.gender-card:nth-child(2):hover{transform:translateY(-4px)!important}
 /* Approved pose studies and undistorted, gently rotated photographs. */
-.pose-art{background-image:url('assets/gesture-studies-approved.webp')}
+.pose-art{background-image:url('assets/gesture-studies-approved.png')}
 .gender-card{transform:rotate(-4deg)!important}
 .gender-card:nth-child(2){transform:rotate(4deg)!important;margin-top:10px}
 .gender-card:hover{transform:rotate(-4deg) translateY(-4px)!important}

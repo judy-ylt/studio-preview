@@ -15,7 +15,7 @@ button:focus-visible,[tabindex="0"]:focus-visible{outline:3px solid #8f6245;outl
 /* The 1536×1024 stamp sheet has 4×2 cells: each cell is 384×512.
    Keep its 3:4 cell ratio independent of the paper card dimensions. */
 main[data-step="2"] .mood-art{position:relative;background-image:none!important;overflow:visible}
-main[data-step="2"] .mood-art::before{content:"";position:absolute;top:0;left:50%;height:100%;width:auto;aspect-ratio:3/4;transform:translateX(-50%);background-image:url('cartoon/assets/emotion-ink-transparent-v2.webp');background-size:400% 200%;background-position:inherit;background-repeat:no-repeat;pointer-events:none}
+main[data-step="2"] .mood-art::before{content:"";position:absolute;top:0;left:50%;height:100%;width:auto;aspect-ratio:3/4;transform:translateX(-50%);background-image:url('cartoon/assets/emotion-ink-transparent-v2.png');background-size:400% 200%;background-position:inherit;background-repeat:no-repeat;pointer-events:none}
 /* Stamps share a baseline, with only a small hand-placed variation. */
 main[data-step="2"] .card{--stamp-offset:0px;--stamp-angle:-.5deg;transform:translateY(var(--stamp-offset)) rotate(var(--stamp-angle))!important;transform-origin:center 70%}
 main[data-step="2"] .card:nth-child(2n){--stamp-offset:2px;--stamp-angle:.5deg}

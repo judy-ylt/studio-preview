@@ -4,8 +4,9 @@ body .history-grid,body .history-grid.comfortable,body .history-grid.compact{gri
 body .history-photo{height:100%!important;aspect-ratio:auto!important;background:#f9f8f3!important}
 body .history-photo img{object-fit:contain!important;object-position:center!important;transform:none!important;width:100%!important;height:100%!important}
 .history-view button,.view-switch button{font-size:24px!important;min-width:44px;min-height:44px!important;display:grid;place-items:center;padding:4px 12px!important}.history-view button:disabled,.view-switch button:disabled{opacity:.3}
-body .dropzone img,body .dropzone .upload-preview{display:block!important;max-width:100%!important;width:auto!important;height:auto!important;max-height:48dvh!important;object-fit:contain!important;margin:0 auto 18px!important;border:10px solid #fff!important;border-bottom-width:17px!important;border-radius:1px!important;box-shadow:2px 7px 17px #453f3320!important;background:#fff;transform:rotate(-1deg)}
-@media(max-width:700px){body .dropzone img,body .dropzone .upload-preview{max-height:300px!important;border-width:8px!important;border-bottom-width:13px!important}}
+/* Uploaded photo keeps its own ratio: fixed width, no white frame (11/2 meeting). drop-shadow follows the visible image, not the box. */
+body .dropzone img,body .dropzone .upload-preview{display:block!important;width:min(100%,360px)!important;max-width:100%!important;height:auto!important;max-height:62dvh!important;object-fit:contain!important;margin:0 auto 18px!important;border:0!important;border-radius:4px!important;box-shadow:none!important;background:none!important;filter:drop-shadow(0 8px 18px #453f3326);transform:none}
+@media(max-width:700px){body .dropzone img,body .dropzone .upload-preview{width:min(100%,260px)!important;max-height:380px!important}}
 
 /* Library geometry stays fixed while density changes inside it. */
 .history-header,.library-header{height:44px!important;min-height:44px!important;margin:0 0 16px!important;align-items:center!important}

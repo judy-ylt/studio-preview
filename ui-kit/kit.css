@@ -1,0 +1,160 @@
+/* Studio UI Kit (11/3) — clear, explicit, smooth.
+   One accent, one surface recipe, one motion curve. Every component is prefixed k- so it can be loaded
+   next to the existing site CSS without collisions. Sizes reuse the 11/2 type scale (usability.css). */
+:root{
+ /* colour */
+ --k-accent:#1f5fc4;          /* interactive: selected, on, primary */
+ --k-accent-strong:#004896;   /* brand blue: pressed, text on tint */
+ --k-accent-tint:#e8f0fc;     /* selected background */
+ --k-accent-ring:#1f5fc42e;   /* focus halo */
+ --k-success:#1fa95a;
+ --k-danger:#d2453b;
+ --k-ground:#f4f4f2;
+ --k-grid:#00000008;
+ --k-surface:#fff;
+ --k-sunken:#f1f1ef;
+ --k-border:#e4e4e1;
+ --k-border-strong:#d3d3cf;
+ --k-ink:#1f2328;
+ --k-ink-body:#3b4248;
+ --k-ink-muted:#6b7178;
+ --k-ink-disabled:#b3b7bb;
+ /* type (same steps as usability.css) */
+ --k-t-page:30px;--k-t-section:22px;--k-t-card:17px;--k-t-body:15px;--k-t-meta:13px;--k-t-caption:12px;
+ /* shape */
+ --k-r-control:14px;--k-r-card:20px;--k-r-pill:999px;
+ --k-h-lg:48px;--k-h-md:40px;
+ --k-shadow-1:0 1px 2px #0000000d,0 4px 12px #0000000a;
+ --k-shadow-2:0 1px 2px #0000000f,0 10px 24px #00000012;
+ --k-shadow-pop:0 2px 6px #00000014,0 18px 40px #0000001f;
+ /* motion */
+ --k-ease:cubic-bezier(.2,.8,.2,1);
+ --k-spring:cubic-bezier(.34,1.45,.64,1);
+ --k-fast:150ms;--k-mid:240ms;
+}
+
+/* ---------- Surface ---------- */
+.k-surface{background:var(--k-surface);border:1px solid var(--k-border);border-radius:var(--k-r-card);box-shadow:var(--k-shadow-1)}
+.k-grid-ground{background:linear-gradient(var(--k-grid) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,var(--k-grid) 1px,transparent 1px) 0 0/24px 24px,var(--k-ground)}
+
+/* ---------- Focus (shared) ---------- */
+.k-btn:focus-visible,.k-seg button:focus-visible,.k-switch input:focus-visible+span,.k-stepper button:focus-visible,.k-check input:focus-visible+span,.k-select>button:focus-visible,.k-chip:focus-visible,.k-slider:focus-visible{outline:none;box-shadow:0 0 0 4px var(--k-accent-ring)}
+
+/* ---------- Button ---------- */
+.k-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:var(--k-h-lg);padding:0 22px;border-radius:var(--k-r-pill);border:1px solid transparent;font:inherit;font-size:var(--k-t-body);font-weight:600;cursor:pointer;
+ transition:background-color var(--k-fast),border-color var(--k-fast),color var(--k-fast),box-shadow var(--k-fast),transform var(--k-mid) var(--k-spring)}
+.k-btn svg{width:18px;height:18px}
+.k-btn:active:not(:disabled){transform:scale(.97)}
+.k-btn--primary{background:var(--k-accent);color:#fff;box-shadow:0 1px 2px #1f5fc440,0 6px 14px #1f5fc433}
+.k-btn--primary:hover:not(:disabled),.k-btn--primary.is-hover{background:#1a54b0}
+.k-btn--secondary{background:var(--k-surface);color:var(--k-ink);border-color:var(--k-border);box-shadow:var(--k-shadow-1)}
+.k-btn--secondary:hover:not(:disabled),.k-btn--secondary.is-hover{border-color:var(--k-border-strong);background:#fafaf9}
+.k-btn--ghost{background:transparent;color:var(--k-ink-body)}
+.k-btn--ghost:hover:not(:disabled),.k-btn--ghost.is-hover{background:var(--k-sunken);color:var(--k-ink)}
+.k-btn--sm{height:var(--k-h-md);padding:0 16px;font-size:var(--k-t-meta)}
+.k-btn--icon{width:var(--k-h-lg);padding:0}
+.k-btn:disabled{background:var(--k-sunken);color:var(--k-ink-disabled);border-color:transparent;box-shadow:none;cursor:not-allowed}
+
+/* ---------- Segmented control ---------- */
+.k-seg{position:relative;display:inline-flex;padding:4px;gap:2px;border-radius:var(--k-r-control);background:var(--k-surface);border:1px solid var(--k-border);box-shadow:var(--k-shadow-1)}
+.k-seg::before{content:"";position:absolute;top:4px;bottom:4px;left:var(--k-seg-x,4px);width:var(--k-seg-w,0);border-radius:10px;background:var(--k-accent-tint);transition:left var(--k-mid) var(--k-ease),width var(--k-mid) var(--k-ease)}
+.k-seg button{position:relative;z-index:1;height:calc(var(--k-h-lg) - 10px);padding:0 18px;border:0;border-radius:10px;background:none;font:inherit;font-size:var(--k-t-body);color:var(--k-ink-muted);cursor:pointer;transition:color var(--k-fast)}
+.k-seg button:hover{color:var(--k-ink)}
+.k-seg button[aria-checked="true"]{color:var(--k-accent-strong);font-weight:600}
+.k-seg button:disabled{color:var(--k-ink-disabled);cursor:not-allowed}
+
+/* ---------- Switch ---------- */
+.k-switch{display:inline-flex;align-items:center;gap:12px;cursor:pointer;font-size:var(--k-t-body);color:var(--k-ink)}
+.k-switch input{position:absolute;opacity:0;pointer-events:none}
+.k-switch span{position:relative;flex:none;width:52px;height:32px;border-radius:var(--k-r-pill);background:var(--k-border-strong);transition:background-color var(--k-mid) var(--k-ease)}
+.k-switch span::after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #00000033;transition:transform var(--k-mid) var(--k-spring)}
+.k-switch input:checked+span{background:var(--k-accent)}
+.k-switch input:checked+span::after{transform:translateX(20px)}
+.k-switch input:disabled+span{opacity:.45}
+.k-switch:has(input:disabled){cursor:not-allowed;color:var(--k-ink-disabled)}
+
+/* ---------- Stepper ---------- */
+.k-stepper{display:inline-flex;align-items:center;gap:6px;height:var(--k-h-lg);padding:0 6px 0 16px;border-radius:var(--k-r-control);background:var(--k-surface);border:1px solid var(--k-border);box-shadow:var(--k-shadow-1)}
+.k-stepper label{margin-right:8px;font-size:var(--k-t-body);color:var(--k-ink-muted)}
+.k-stepper output{min-width:2.2em;text-align:center;font-size:var(--k-t-card);font-weight:600;font-variant-numeric:tabular-nums;color:var(--k-ink)}
+.k-stepper button{display:grid;place-items:center;width:36px;height:36px;border:0;border-radius:10px;background:none;color:var(--k-ink);font-size:20px;cursor:pointer;transition:background-color var(--k-fast)}
+.k-stepper button:hover:not(:disabled){background:var(--k-sunken)}
+.k-stepper button:disabled{color:var(--k-ink-disabled);cursor:not-allowed}
+.k-stepper output.is-bump{animation:k-bump var(--k-mid) var(--k-spring)}
+@keyframes k-bump{40%{transform:scale(1.18)}}
+
+/* ---------- Text field ---------- */
+.k-field{display:flex;align-items:center;gap:10px;height:var(--k-h-lg);padding:0 14px;border-radius:var(--k-r-control);background:var(--k-surface);border:1.5px solid var(--k-border);transition:border-color var(--k-fast),box-shadow var(--k-fast)}
+.k-field svg{flex:none;width:18px;height:18px;color:var(--k-ink-muted)}
+.k-field input{flex:1;min-width:0;border:0;outline:0;background:none;font:inherit;font-size:var(--k-t-body);color:var(--k-ink)}
+.k-field input::placeholder{color:var(--k-ink-muted)}
+.k-field:hover{border-color:var(--k-border-strong)}
+.k-field:focus-within,.k-field.is-focus{border-color:var(--k-accent);box-shadow:0 0 0 4px var(--k-accent-ring)}
+.k-field.is-error{border-color:var(--k-danger);box-shadow:0 0 0 4px #d2453b24}
+.k-field-hint{margin:6px 2px 0;font-size:var(--k-t-caption);color:var(--k-ink-muted)}
+.k-field.is-error+.k-field-hint{color:var(--k-danger)}
+
+/* ---------- Checklist ---------- */
+.k-checklist{display:grid;gap:2px;padding:6px;border-radius:var(--k-r-card);background:var(--k-surface);border:1px solid var(--k-border);box-shadow:var(--k-shadow-1)}
+.k-check{display:flex;align-items:center;gap:12px;min-height:var(--k-h-lg);padding:0 12px;border-radius:12px;cursor:pointer;font-size:var(--k-t-body);color:var(--k-ink);transition:background-color var(--k-fast)}
+.k-check:hover{background:var(--k-sunken)}
+.k-check input{position:absolute;opacity:0;pointer-events:none}
+.k-check span{position:relative;flex:none;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--k-border-strong);transition:background-color var(--k-fast),border-color var(--k-fast)}
+.k-check span::after{content:"";position:absolute;left:7px;top:3.5px;width:6px;height:11px;border:solid #fff;border-width:0 2.2px 2.2px 0;transform:rotate(45deg) scale(0);transition:transform var(--k-mid) var(--k-spring)}
+.k-check input:checked+span{background:var(--k-success);border-color:var(--k-success)}
+.k-check input:checked+span::after{transform:rotate(45deg) scale(1)}
+.k-check:has(input:disabled){color:var(--k-ink-disabled);cursor:not-allowed}
+
+/* ---------- Select (button + popover list) ---------- */
+.k-select{position:relative;display:inline-block}
+.k-select>button{display:flex;align-items:center;justify-content:space-between;gap:16px;min-width:180px;height:var(--k-h-lg);padding:0 14px 0 16px;border-radius:var(--k-r-control);background:var(--k-surface);border:1px solid var(--k-border);box-shadow:var(--k-shadow-1);font:inherit;font-size:var(--k-t-body);color:var(--k-ink);cursor:pointer;transition:border-color var(--k-fast)}
+.k-select>button:hover{border-color:var(--k-border-strong)}
+.k-select>button svg{width:18px;height:18px;color:var(--k-ink-muted);transition:transform var(--k-mid) var(--k-ease)}
+.k-select.is-open>button svg{transform:rotate(180deg)}
+.k-select ul{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:20;margin:0;padding:6px;list-style:none;border-radius:16px;background:var(--k-surface);border:1px solid var(--k-border);box-shadow:var(--k-shadow-pop);
+ opacity:0;transform:translateY(-4px) scale(.98);transform-origin:top;pointer-events:none;transition:opacity var(--k-fast),transform var(--k-mid) var(--k-ease)}
+.k-select.is-open ul{opacity:1;transform:none;pointer-events:auto}
+.k-select li{display:flex;align-items:center;justify-content:space-between;min-height:40px;padding:0 12px;border-radius:10px;font-size:var(--k-t-body);color:var(--k-ink);cursor:pointer}
+.k-select li:hover,.k-select li.is-active{background:var(--k-sunken)}
+.k-select li[aria-selected="true"]{color:var(--k-accent-strong);font-weight:600}
+.k-select li[aria-selected="true"]::after{content:"✓";font-weight:700}
+
+/* ---------- Slider ---------- */
+.k-slider{--p:50%;-webkit-appearance:none;appearance:none;width:100%;height:28px;background:none;cursor:pointer;border-radius:var(--k-r-pill)}
+.k-slider::-webkit-slider-runnable-track{height:6px;border-radius:var(--k-r-pill);background:linear-gradient(90deg,var(--k-accent) var(--p),var(--k-border) var(--p))}
+.k-slider::-moz-range-track{height:6px;border-radius:var(--k-r-pill);background:linear-gradient(90deg,var(--k-accent) var(--p),var(--k-border) var(--p))}
+.k-slider::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:-10px;border-radius:50%;background:#fff;border:1px solid var(--k-border);box-shadow:0 2px 6px #0000002e;transition:transform var(--k-mid) var(--k-spring)}
+.k-slider::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#fff;border:1px solid var(--k-border);box-shadow:0 2px 6px #0000002e}
+.k-slider:active::-webkit-slider-thumb{transform:scale(1.12)}
+.k-slider:disabled{opacity:.45;cursor:not-allowed}
+
+/* ---------- Chip (choice pill) ---------- */
+.k-chip{display:inline-flex;align-items:center;gap:6px;height:var(--k-h-md);padding:0 16px;border-radius:var(--k-r-pill);background:var(--k-surface);border:1px solid var(--k-border);font:inherit;font-size:var(--k-t-body);color:var(--k-ink);cursor:pointer;transition:background-color var(--k-fast),border-color var(--k-fast),color var(--k-fast)}
+.k-chip:hover,.k-chip.is-hover{border-color:var(--k-border-strong)}
+.k-chip[aria-pressed="true"]{background:var(--k-accent-tint);border-color:transparent;color:var(--k-accent-strong);font-weight:600}
+.k-chip:disabled{color:var(--k-ink-disabled);background:var(--k-sunken);cursor:not-allowed}
+
+/* ---------- Choice card (style / pose / mood picks) ---------- */
+.k-card{position:relative;display:grid;gap:10px;padding:10px 10px 14px;border-radius:var(--k-r-card);background:var(--k-surface);border:1px solid var(--k-border);box-shadow:var(--k-shadow-1);cursor:pointer;text-align:left;font:inherit;transition:box-shadow var(--k-mid),transform var(--k-mid) var(--k-ease),border-color var(--k-fast)}
+.k-card:hover,.k-card.is-hover{box-shadow:var(--k-shadow-2);transform:translateY(-3px)}
+.k-card[aria-pressed="true"]{border-color:var(--k-accent);box-shadow:0 0 0 3px var(--k-accent-ring),var(--k-shadow-2)}
+.k-card[aria-pressed="true"]::after{content:"";position:absolute;top:16px;right:16px;width:24px;height:24px;border-radius:50%;background:var(--k-accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat}
+.k-card:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.k-card .k-card-art{aspect-ratio:4/5;border-radius:12px;background:var(--k-sunken) center/cover no-repeat}
+.k-card strong{padding:0 4px;font-size:var(--k-t-card);font-weight:600;color:var(--k-ink)}
+.k-card small{padding:0 4px;margin-top:-6px;font-size:var(--k-t-meta);color:var(--k-ink-muted)}
+
+/* ---------- Toast ---------- */
+.k-toast{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:var(--k-r-pill);background:var(--k-ink);color:#fff;font-size:var(--k-t-meta);box-shadow:var(--k-shadow-pop)}
+.k-toast i{width:8px;height:8px;border-radius:50%;background:var(--k-success)}
+
+@media(prefers-reduced-motion:reduce){.k-btn,.k-seg::before,.k-switch span,.k-switch span::after,.k-check span::after,.k-select ul,.k-card,.k-stepper output{transition:none!important;animation:none!important}}
+
+/* ---------- Tip (? icon; explanation on hover, focus or tap) ---------- */
+.k-tip{position:relative;display:inline-grid;place-items:center;flex:none;width:18px;height:18px;margin-left:4px;padding:0;border-radius:50%;border:1px solid var(--k-border-strong);background:var(--k-surface);color:var(--k-ink-muted);font:600 11px/1 -apple-system,BlinkMacSystemFont,sans-serif;vertical-align:2px;cursor:help;transition:color var(--k-fast),border-color var(--k-fast)}
+.k-tip:hover,.k-tip:focus-visible{color:var(--k-accent);border-color:var(--k-accent);outline:none}
+.k-tip::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 8px);z-index:30;width:max-content;max-width:240px;padding:9px 12px;border-radius:12px;background:var(--k-ink);color:#fff;font:400 12px/1.6 -apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif;text-align:left;white-space:normal;box-shadow:var(--k-shadow-pop);
+ opacity:0;transform:translate(-50%,4px);pointer-events:none;transition:opacity var(--k-fast),transform var(--k-fast)}
+.k-tip:hover::after,.k-tip:focus::after{opacity:1;transform:translate(-50%,0)}
+.k-tip.is-right::after{left:auto;right:-8px;transform:translateY(4px)}
+.k-tip.is-right:hover::after,.k-tip.is-right:focus::after{transform:none}

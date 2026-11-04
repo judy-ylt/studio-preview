@@ -1,0 +1,67 @@
+/* 11/3 clean direction (ref: Collect UI glass pill on a dotted light ground).
+   One ground, one glass material, one accent. Loaded last; add ?classic to the URL to compare with the desk version. */
+:root{
+ --c-ground:#ecebe8;
+ --c-dot:#00000016;
+ --c-ink:#24302c;
+ --c-muted:#6b7570;
+ --c-glass:linear-gradient(180deg,#ffffffd9,#ffffff8c);
+ --c-glass-edge:#ffffffee;
+ --c-glass-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 #0000000a,0 1px 2px #0000000d,0 10px 28px #0000000f;
+ --c-lift-shadow:inset 0 1px 0 #fff,0 2px 4px #0000000f,0 18px 40px #00000017;
+ --c-spring:cubic-bezier(.34,1.4,.64,1);
+}
+
+/* Ground: soft light in the middle, fine dot grid, nothing else on the desk. */
+html body{background:radial-gradient(ellipse 70% 60% at 45% 35%,#f8f7f5 0%,transparent 70%),radial-gradient(circle,var(--c-dot) 1px,transparent 1.3px) 0 0/22px 22px,var(--c-ground)!important;color:var(--c-ink)}
+html body .desk,html body .desk-tools{display:none!important}
+
+/* Glass surfaces share one recipe. */
+html body footer,html body .point-balance,html body .level-switch,html body .theme-preview,html body .arrows button,html body .bubble,html body .regen-panel{
+ background:var(--c-glass)!important;border:1px solid var(--c-glass-edge)!important;box-shadow:var(--c-glass-shadow)!important;backdrop-filter:blur(18px) saturate(1.2)}
+html body footer{border-radius:30px}
+html body nav button{background:transparent!important;border:0!important;box-shadow:none!important;color:var(--c-muted)}
+html body nav button.active{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 82%,#fff),var(--accent))!important;color:#fff;box-shadow:inset 0 1px 0 #ffffff55,0 6px 14px color-mix(in srgb,var(--accent) 28%,transparent)!important}
+html body .primary{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 82%,#fff),var(--accent))!important;border:1px solid color-mix(in srgb,var(--accent) 70%,#fff)!important;box-shadow:inset 0 1px 0 #ffffff55,0 6px 16px color-mix(in srgb,var(--accent) 26%,transparent)!important;border-radius:999px!important}
+html body .secondary{background:var(--c-glass)!important;border:1px solid var(--c-glass-edge)!important;box-shadow:var(--c-glass-shadow)!important;border-radius:999px!important}
+html body .primary,html body .secondary,html body .arrows button{transition:transform .45s var(--c-spring),box-shadow .3s}
+@media(hover:hover){html body .primary:not(:disabled):hover,html body .secondary:hover,html body .arrows button:hover{transform:scale(1.04)}}
+html body .primary:not(:disabled):active,html body .secondary:active{transform:scale(.97)}
+
+/* Cards: straight, white, rounded — the artwork is the only decoration. */
+html body .card{--angle:0deg;--lift:0px;--paper-rest:0deg;--stamp-angle:0deg;--stamp-offset:0px;
+ background:#fff!important;border:1px solid #fff!important;border-radius:22px!important;padding:0!important;box-shadow:var(--c-glass-shadow)!important;
+ transform:none!important;transition:transform .5s var(--c-spring),box-shadow .35s!important;overflow:hidden!important}
+html body .card::before{display:none!important}
+html body main[data-step="1"] .art::before{display:block!important}
+html body .caption{padding:12px 18px 16px}
+html body .caption small{color:var(--c-muted)}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){html body .cards .card:hover{transform:translateY(-6px) scale(1.02)!important;box-shadow:var(--c-lift-shadow)!important}}
+html body .cards .card.selected{transform:translateY(-4px)!important;outline:2px solid var(--accent)!important;outline-offset:4px!important;box-shadow:var(--c-lift-shadow)!important}
+html body main[data-step="2"] .card.selected .mood-art::after{background:transparent;box-shadow:none}
+html body .cards{mask-image:linear-gradient(90deg,#000 0%,#000 calc(100% - 60px),transparent)}
+
+/* Bubbles: plain glass circles, no dashed outlines. */
+html body .bubble{border-style:solid!important}
+html body .bubble.chosen{background:linear-gradient(180deg,#fff,#ffffffb3)!important}
+html body .bubble.chosen strong{color:var(--accent)}
+html body .bubble.person{border:3px solid #fff!important}
+
+/* Upload + history: same white tiles, no tilted prints. */
+html body .dropzone{background:#ffffff80!important;border:1.5px dashed #c5c9c4!important;border-radius:26px!important;backdrop-filter:blur(12px)}
+html body .history-photo{border-radius:14px!important;transform:none!important;box-shadow:0 1px 2px #0000000d,0 6px 16px #0000000f!important;border:4px solid #fff!important}
+
+/* Text step canvas and result: one rounded sheet, no cord or clips. */
+html body .text-canvas{border-radius:22px;background:#fff;box-shadow:var(--c-glass-shadow)}
+html body .display-cord,html body .wood-clip,html body .hanging-art .print::before,html body .hanging-art .print::after{display:none!important}
+html body .hanging-art .print{border:0!important;border-radius:26px!important;overflow:hidden;background:#fff!important;transform:none!important;box-shadow:var(--c-lift-shadow)!important}
+html body .hanging-art .print canvas{border-radius:26px;display:block}
+
+/* Small chips follow the pill language. */
+html body .phrase-chips button,html body .text-none,html body .regen-reasons button{background:#ffffffb3;border-color:#fff;box-shadow:0 1px 2px #0000000d}
+html body main .stage::before{display:none!important}
+html body main[data-step="2"] .card .caption{text-align:left}
+/* Beat the stamp tilt in immersion.css (main[data-step="2"] .card … !important). */
+html body main .cards .card{transform:none!important}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){html body main .cards .card:hover{transform:translateY(-6px) scale(1.02)!important}}
+html body main .cards .card.selected{transform:translateY(-4px)!important}

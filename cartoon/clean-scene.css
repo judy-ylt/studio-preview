@@ -1,0 +1,103 @@
+/* 11/3 scene layer on top of clean.css (refs: Collect UI "Meet the people" hanging cards; HSK portfolio badge/stamp/notes).
+   Scene objects are drawn in the same flat UI language — no photographic props — so they blend with the controls.
+   ?plain turns this layer off; ?classic turns off both. */
+:root{--c-warm:#e7783f;--c-cord:#b4b7b2;--c-paper:#fffdf8}
+
+/* Warm studio ground: cream, dot grid, two soft colour glows. */
+html body{background:
+ radial-gradient(ellipse 45% 40% at 12% 88%,#fbd9c466 0%,transparent 70%),
+ radial-gradient(ellipse 40% 45% at 88% 12%,#cfe6df66 0%,transparent 70%),
+ radial-gradient(ellipse 70% 60% at 45% 40%,#fffdf9 0%,transparent 72%),
+ radial-gradient(circle,#00000014 1px,transparent 1.3px) 0 0/22px 22px,#f3f0ea!important}
+
+/* Editorial eyebrow above each step title. */
+html body main h1::before{display:block;margin-bottom:8px;font-size:12px;font-weight:500;letter-spacing:.14em;color:#8a8f88}
+html body main[data-step="0"] h1::before{content:"●  STEP 01 · 上傳照片"}
+html body main[data-step="1"] h1::before{content:"●  STEP 02 · STYLE"}
+html body main[data-step="2"] h1::before{content:"●  STEP 03 · MOOD"}
+html body main[data-step="3"] h1::before{content:"●  STEP 04 · POSE"}
+html body main[data-step="4"] h1::before{content:"●  STEP 05 · TEXT"}
+html body main[data-step="5"] h1::before{content:"●  DONE · 成果"}
+html body main h1::first-letter{color:inherit}
+
+/* STEP 02 + STEP 04 — gallery hanging for styles and poses (motion in hang.js).
+   Works hang from a straight picture rail: a small hook, a V-shaped picture wire, a clean white mount.
+   The artwork is the hero; name + tag sit on one line below. Click the whole card to choose. */
+html body main:is([data-step="1"],[data-step="3"]) .cards.hang-track{position:relative;align-items:flex-start;padding-top:30px!important;padding-bottom:44px!important;gap:30px!important}
+html body main:is([data-step="1"],[data-step="3"]) .hang-cord{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+html body main:is([data-step="1"],[data-step="3"]) .hang-cord path{fill:none;stroke:#b9bdc2;stroke-width:2.5;stroke-linecap:round}
+html body main:is([data-step="1"],[data-step="3"]) .hang-cord circle{display:none}
+html body main:is([data-step="1"],[data-step="3"]) .card.hang{overflow:visible!important;background:#fff!important;border:1px solid #ffffff!important;border-radius:16px!important;padding:12px 12px 14px!important;height:auto!important;
+ box-shadow:0 1px 2px #1f262e0d,0 12px 26px #1f262e12,0 30px 40px -24px #1f262e24!important;
+ transform-origin:50% calc(-1 * var(--string,40px))!important;transform:var(--hang-t,none)!important;transition:box-shadow .3s!important;animation:none!important;will-change:transform;cursor:pointer}
+html body main:is([data-step="1"],[data-step="3"]) .card.hang:hover{box-shadow:0 2px 4px #1f262e12,0 20px 38px #1f262e1f,0 44px 54px -26px #1f262e33!important}
+html body main:is([data-step="1"],[data-step="3"]) .card.hang::after{display:none}
+html body main:is([data-step="1"],[data-step="3"]) .card.hang.selected{outline:2px solid var(--accent)!important;outline-offset:5px!important}
+/* Flat binder clip (assets/binder-clip-flat.svg, from IconOven MIT): jaws grip the mount, handle tips rest on the rail. */
+.hang-wire{position:absolute;left:50%;bottom:calc(100% - var(--string,32px) * .56);z-index:5;height:calc(var(--string,32px) * 1.65);aspect-ratio:18/19;transform:translateX(-50%);pointer-events:none;
+ background:url("assets/binder-clip-flat.svg") center/contain no-repeat;filter:drop-shadow(0 1px 1px #1f262e2e);opacity:.92}
+/* Artwork: 4:5 window on a muted wash, portrait sits on the bottom edge. */
+html body main[data-step="1"] .card.hang .art{height:auto!important;aspect-ratio:4/5;border-radius:10px;overflow:hidden}
+html body main[data-step="1"] .card.hang .art::before{left:0!important;top:0!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;transform:none!important;background-size:124% auto!important;background-position:50% 100%!important}
+html body main[data-step="1"] .card.hang:nth-child(7n+1) .art{background-color:#efe8ec!important}
+html body main[data-step="1"] .card.hang:nth-child(7n+2) .art{background-color:#e9e9f1!important}
+html body main[data-step="1"] .card.hang:nth-child(7n+3) .art{background-color:#f2ede1!important}
+html body main[data-step="1"] .card.hang:nth-child(7n+4) .art{background-color:#e5edec!important}
+html body main[data-step="1"] .card.hang:nth-child(7n+5) .art{background-color:#efe9e3!important}
+html body main[data-step="1"] .card.hang:nth-child(7n+6) .art{background-color:#e7ede5!important}
+html body main[data-step="1"] .card.hang:nth-child(7n) .art{background-color:#ebe8f0!important}
+html body main[data-step="1"] .card.hang .art::after{display:none}
+html body main:is([data-step="1"],[data-step="3"]) .card.hang .caption{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:12px 4px 0!important}
+html body main:is([data-step="1"],[data-step="3"]) .card.hang .caption strong{font-size:17px;font-weight:600;white-space:nowrap}
+html body main:is([data-step="1"],[data-step="3"]) .card.hang .caption small{margin:0;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html body main:is([data-step="1"],[data-step="3"]) .card.hang.selected .caption strong{color:var(--accent)}
+/* A soft glint on the print that follows the cursor (--mx/--my, --shine from hang.js). */
+.hang-shine{position:absolute;inset:12px 12px auto;aspect-ratio:4/5;z-index:4;border-radius:10px;pointer-events:none;opacity:calc(var(--shine,0) * .75);mix-blend-mode:soft-light;
+ background:radial-gradient(circle at var(--mx,50%) var(--my,30%),#fff 0%,#ffffff80 20%,transparent 55%)}
+@media(max-height:820px) and (min-width:761px){
+ html body main:is([data-step="1"],[data-step="3"]) .cards.hang-track{padding-top:30px!important;padding-bottom:30px!important}
+ html body main:is([data-step="1"],[data-step="3"]) .card.hang{flex-basis:calc((100% - 90px)/4.6)!important}
+}
+
+/* STEP 03 — each mood is its own slip of real watercolour paper (CC0, ambientCG Paper001) with the ink stamp pressed on it. */
+html body main[data-step="2"] .cards .card{background:url("assets/paper-watercolor-cc0.jpg") center/cover!important;border:0!important;border-radius:3px!important;padding:12px 10px 0!important;overflow:visible!important;outline:0!important;
+ box-shadow:0 1px 1px #4b3f2f17,0 8px 18px #4b3f2f17,0 22px 30px -18px #4b3f2f2e!important;transform:rotate(var(--tilt,0deg))!important}
+html body main[data-step="2"] .card:nth-child(3n+1){--tilt:-1.2deg}
+html body main[data-step="2"] .card:nth-child(3n+2){--tilt:1deg}
+html body main[data-step="2"] .card:nth-child(3n){--tilt:-.4deg}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){html body main[data-step="2"] .cards .card:hover{transform:translateY(-6px) rotate(0)!important}}
+html body main[data-step="2"] .cards .card.selected{transform:translateY(-4px) rotate(0)!important;outline:2px solid var(--accent)!important;outline-offset:5px!important}
+html body main[data-step="2"] .card .caption{text-align:center!important;padding:10px 8px 16px}
+/* Slip height follows its content: a square stamp window + caption (the old fixed card height clipped the caption). */
+html body main[data-step="2"] .cards{align-items:flex-start;padding-top:24px!important;padding-bottom:48px!important}
+html body main[data-step="2"] .cards .card{height:auto!important;padding:16px 16px 0!important}
+html body main[data-step="2"] .card .mood-art{width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:1/1;margin:0!important}
+html body main[data-step="2"] .card .mood-art::before{top:50%!important;height:122%!important;transform:translate(-50%,-52%)!important}
+html body main[data-step="2"] .card:nth-child(n+5) .mood-art::before{transform:translate(-50%,-40%)!important}
+html body main[data-step="2"] .card .mood-art::after{display:none!important}
+html body main[data-step="2"] .card .mood-art::before{mix-blend-mode:multiply}
+html body main[data-step="2"] .card.selected .caption strong{color:var(--accent)}
+
+/* STEP 04 — pose sketches hang like the styles; the mount is real drawing paper and the sketch window is 3:4 (sprite cells are 384×512). */
+html body main[data-step="3"] .cards .card.hang{background:url("assets/paper-watercolor-cc0.jpg") center/cover!important}
+html body main[data-step="3"] .card.hang .pose-art{width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:3/4;margin:0!important;transform:none!important;mix-blend-mode:multiply}
+html body main[data-step="3"] .card.hang .caption{display:block;text-align:center;padding:10px 4px 0!important}
+html body main[data-step="3"] .card.hang .caption strong{font-size:17px;font-weight:600}
+html body main[data-step="3"] .card.hang .hang-shine{aspect-ratio:3/4}
+
+/* STEP 05 — the canvas is held by the same flat binder clip. */
+html body .text-canvas{overflow:visible;border-radius:4px}
+html body .text-canvas::after{content:"";position:absolute;left:50%;top:-16px;width:30px;height:32px;margin-left:-15px;background:url("assets/binder-clip-flat.svg") center/contain no-repeat;filter:drop-shadow(0 1px 1px #1f262e33);pointer-events:none}
+
+/* DONE — the finished piece hangs from the rail on two flat binder clips. */
+html body .display-cord{display:block!important;top:18px;left:-40px;right:-40px;height:2.5px;border:0;border-radius:2px;background:#b9bdc2;filter:none}
+html body .hanging-art{padding-top:40px}
+html body .hanging-art>.wood-clip{display:block!important;top:16px;width:32px;height:34px;background:url("assets/binder-clip-flat.svg") center/contain no-repeat!important;filter:drop-shadow(0 1px 1px #1f262e33)!important;transform:none!important;z-index:3}
+html body .hanging-art>.wood-clip::after{display:none!important}
+html body .hanging-art .print{border-radius:4px!important;transform:rotate(-.6deg)!important}
+html body .hanging-art .print canvas{border-radius:4px}
+
+/* Upload — history photos read as a pinned contact sheet. */
+html body .history-photo{transform:rotate(var(--t,0deg))!important}
+html body .history-photo:nth-child(3n+1){--t:-1deg}
+html body .history-photo:nth-child(3n+2){--t:.8deg}

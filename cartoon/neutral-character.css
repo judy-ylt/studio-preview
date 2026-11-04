@@ -1,10 +1,10 @@
 /* One understated adult model; the medium, rather than identity, carries each option. */
 main[data-step="1"] .art{position:relative;container-type:size;background-image:none!important}
-main[data-step="1"] .art::before{content:"";position:absolute;top:50%;left:50%;width:min(100cqw,100cqh);aspect-ratio:1;transform:translate(-50%,-50%);background-image:url('assets/cartoon-neutral-adult-v1.webp');background-repeat:no-repeat;background-size:300% 200%;background-position:inherit;pointer-events:none}
+main[data-step="1"] .art::before{content:"";position:absolute;top:50%;left:50%;width:min(100cqw,100cqh);aspect-ratio:1;transform:translate(-50%,-50%);background-image:url('assets/cartoon-neutral-adult-v1.png');background-repeat:no-repeat;background-size:300% 200%;background-position:inherit;pointer-events:none}
 
 /* Use the same square portrait area as the other six styles. */
 main[data-step="1"] .art.geometric-airbrush-art{background-image:none!important}
-main[data-step="1"] .art.geometric-airbrush-art::before{content:"";width:min(92cqw,92cqh);background-image:url("assets/geometric-airbrush-v5.webp");background-size:contain;background-position:center;background-repeat:no-repeat}
+main[data-step="1"] .art.geometric-airbrush-art::before{content:"";width:min(92cqw,92cqh);background-image:url("assets/geometric-airbrush-v5.png");background-size:contain;background-position:center;background-repeat:no-repeat}
 
 /* A quiet selection ring follows the printed stamp, not the whole label card. */
 main[data-step="2"] .card{outline:0}

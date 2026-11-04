@@ -1,0 +1,13 @@
+外部開源素材來源（11/3 加入）
+
+paper-watercolor-cc0.jpg
+- 來源：ambientCG「Paper 001」（Paper001_1K-JPG_Color.jpg），https://ambientcg.com/view?id=Paper001
+- 授權：CC0 1.0（公眾領域，可商用、免標示）
+- 用途：情緒步驟的整張水彩紙、動作步驟的素描紙。
+
+binder-clip-flat.svg
+- 來源：IconOven「binder-clip」（Iconify 圖示集 iconoven），作者 Appic Marketing
+- 授權：MIT（可商用、可修改；保留此出處紀錄）
+- 處理：夾身改為實心深灰、把手改淺灰、中線改中灰；裁成 18×19 viewBox。
+- 用途：藝術風格卡、文字畫布、成果圖的長尾夾。
+（11/3 先用過 rawpixel CC0 寫實長尾夾，Judy 要扁平風格後已移到 _archive/2026-11-03-before-14-styles/binder-clip-cc0.png）
