@@ -1,6 +1,7 @@
 /* Shot list as a strip under the preview; zoom tools float inside the canvas area. */
 .editor-refined .canvas-space{position:relative}
 .editor-refined .canvas-space>canvas{border:0;border-radius:var(--radius-12)}
+.editor-refined .canvas-space:has(#preview:not([hidden])){background:none}
 .editor-refined .canvas-space>.canvas-tools{position:absolute;left:50%;bottom:var(--space-12);z-index:4;transform:translateX(-50%);padding:var(--space-4) var(--space-12);gap:var(--space-8);border:1px solid var(--color-border-default);box-shadow:var(--shadow-md);white-space:nowrap}
 .editor-refined .canvas-space>.canvas-tools[hidden]{display:none}
 .shot-strip{flex:none;margin-top:var(--space-12);min-width:0}
@@ -23,8 +24,9 @@
 .editor-refined .shot-strip .remove-shot::before{content:'×';font-size:var(--text-lg);line-height:28px}
 .editor-refined .shot-strip .remove-shot:hover{background:var(--color-surface-muted)}
 .editor-refined .shot-strip .shot-footer{flex:none;display:flex;margin:0;padding:var(--space-2) 0;border:0}
-.editor-refined .shot-strip #addTop{width:96px;padding:var(--space-4);border:1px dashed var(--color-border-emphasis);border-radius:var(--radius-12);background:var(--color-surface-default);color:var(--color-brand-primary);font-size:var(--text-sm);text-decoration:none;white-space:normal}
-@media(max-width:639px){.editor-refined .shot-strip .shot-item{grid-template-columns:64px 96px}.editor-refined .shot-strip #addTop{width:88px}}
+.editor-refined .shot-strip #addTop{width:128px;padding:var(--space-4);border:1px solid color-mix(in srgb,var(--color-brand-primary) 24%,var(--color-surface-default));border-radius:var(--radius-12);background:var(--color-info-light);color:var(--color-brand-primary);font-size:var(--text-base);font-weight:600;text-decoration:none;white-space:nowrap;transition:border-color var(--duration-normal)}
+@media(hover:hover) and (pointer:fine){.editor-refined .shot-strip #addTop:not(:disabled):hover{border-color:var(--color-brand-primary)}}
+@media(max-width:639px){.editor-refined .shot-strip .shot-item{grid-template-columns:64px 96px}.editor-refined .shot-strip #addTop{width:112px}}
 .native-note{display:none;margin:var(--space-16) 0 0;font-size:var(--text-sm);line-height:var(--leading-sm);color:var(--color-text-muted)}
 .photo-native .native-note{display:block}
 .editor-refined .photo-native :is(.position-heading,.quick-position){display:none}
@@ -48,11 +50,3 @@
 .editor-refined .shot-panel .source-area{margin-bottom:var(--space-8)}
 .editor-refined .shot-panel .photo-tools{position:absolute;top:var(--space-24);right:var(--space-16);min-height:0;margin:0}
 .editor-refined .shot-panel .photo-tools button{min-height:32px;padding:0;font-size:var(--text-sm);color:var(--color-text-muted)}
-.editor-refined .shot-strip .shot-list:has(.shot-item:only-child){flex:0 0 auto}
-.common-shots{flex:1;min-width:0;padding:var(--space-8) var(--space-16);border:1px solid color-mix(in srgb,var(--color-brand-primary) 24%,var(--color-surface-default));border-radius:var(--radius-12);background:var(--color-info-light);color:var(--color-brand-primary);text-align:left;transition:border-color var(--duration-normal)}
-.common-shots[hidden]{display:none}
-.common-shots strong{display:block;font-size:var(--text-base);font-weight:600;line-height:var(--leading-base)}
-.common-shots span{display:block;font-size:var(--text-sm);line-height:var(--leading-sm);color:var(--color-text-default)}
-.common-shots:focus-visible{outline:2px solid var(--color-brand-primary);outline-offset:2px}
-@media(hover:hover) and (pointer:fine){.common-shots:hover{border-color:var(--color-brand-primary)}}
-@media(max-width:1279px){.shot-strip-row{flex-wrap:wrap}.common-shots{order:3;flex-basis:100%}}

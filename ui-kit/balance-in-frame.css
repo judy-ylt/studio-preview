@@ -1,0 +1,9 @@
+/* Points belong to the application inside the white frame, leaving room for a global menu outside it. */
+html body :is(.right-panel,.settings-panel)>:is(.balance-bar,.topbar){display:flex;flex:none;justify-content:flex-end;align-items:center;height:auto;margin:var(--space-12) 0 var(--space-12);padding:0;border:0;background:none}
+html body.studio-embedded .settings-panel>.topbar{padding:0}
+@media(min-width:1024px){
+html body.editor-refined :is(.workbench,.workspace),html body[data-station="cartoon"] .workbench{height:calc(100dvh - 32px);margin-top:var(--space-16)}
+}
+@media(max-width:1023px){
+html body.editor-refined :is(.workbench,.workspace),html body[data-station="cartoon"] .workbench{margin-top:var(--space-8)}
+}

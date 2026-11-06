@@ -14,3 +14,8 @@ body[data-station="portrait"] .card-desk>.choice:focus-visible{outline:2px solid
 @media(min-width:1280px){body[data-station="portrait"] .card-desk{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:639px){body[data-station="portrait"] .card-desk{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-20) var(--space-16)}body[data-station="portrait"] .card-desk>.choice strong{font-size:var(--text-base);line-height:var(--leading-base)}}
 @media(prefers-reduced-motion:reduce){body[data-station="portrait"] .card-desk>.choice :is(img,canvas,.swatch){transition:none;transform:none}}
+/* Only two gender options: centre them and let the portraits carry the step. */
+body[data-station="portrait"] .card-desk:has(>.choice[data-choice="gender"]){display:flex;justify-content:center;gap:var(--space-48);padding-block:var(--space-32)}
+body[data-station="portrait"] .card-desk>.choice[data-choice="gender"]{flex:0 1 240px;min-width:0}
+body[data-station="portrait"] .card-desk>.choice[data-choice="gender"] small{display:none}
+@media(max-width:639px){body[data-station="portrait"] .card-desk:has(>.choice[data-choice="gender"]){gap:var(--space-16);padding-block:var(--space-16)}}

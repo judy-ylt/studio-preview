@@ -7,7 +7,4 @@ const syncSteps=()=>{const ready=!preview.hidden;stepProduct.toggleAttribute('ar
 new MutationObserver(syncSteps).observe(preview,{attributes:true,attributeFilter:['hidden']});syncSteps();
 stepProduct.onclick=()=>{const name=$('#inlineProductName');if(name)name.focus();else $('#upload').click()};
 stepShots.onclick=()=>$('#tab-brief').click();
-const common=$('#addCommon'),syncCommon=()=>{common.hidden=preview.hidden||list.querySelectorAll('.shot-item').length!==1};
-new MutationObserver(syncCommon).observe(list,{childList:true});syncCommon();
-common.onclick=()=>{const first=list.querySelector('.shot-select')?.dataset.shot,missing=['front','three','detail','lifestyle'].filter(type=>type!==first);for(const type of missing){$('#addTop').click();document.querySelector(`[data-add-type="${type}"]`)?.click()}list.querySelector(`[data-shot="${first}"]`)?.click();const status=$('#status'),message='已加入常用四張，標示待補的照片請再補上設定';status.textContent=message;setTimeout(()=>{if(status.textContent===message)status.textContent=''},3200)};
 })();
