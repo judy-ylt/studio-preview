@@ -1,0 +1,58 @@
+/* Shot list as a strip under the preview; zoom tools float inside the canvas area. */
+.editor-refined .canvas-space{position:relative}
+.editor-refined .canvas-space>canvas{border:0;border-radius:var(--radius-12)}
+.editor-refined .canvas-space>.canvas-tools{position:absolute;left:50%;bottom:var(--space-12);z-index:4;transform:translateX(-50%);padding:var(--space-4) var(--space-12);gap:var(--space-8);border:1px solid var(--color-border-default);box-shadow:var(--shadow-md);white-space:nowrap}
+.editor-refined .canvas-space>.canvas-tools[hidden]{display:none}
+.shot-strip{flex:none;margin-top:var(--space-12);min-width:0}
+.shot-strip:has(.empty-shot-list){display:none}
+.editor-refined .shot-strip .shot-heading{display:flex;align-items:baseline;gap:var(--space-8);margin:0 0 var(--space-4)}
+.editor-refined .shot-strip .shot-heading h2{margin:0;font-size:var(--text-sm);line-height:var(--leading-sm)}
+.shot-strip-row{display:flex;align-items:stretch;gap:var(--space-8);min-width:0}
+.editor-refined .shot-strip .shot-list{display:flex;flex:1;gap:var(--space-8);min-width:0;margin:0;padding:var(--space-2);overflow-x:auto;scrollbar-width:thin}
+.editor-refined .shot-strip .shot-item{position:relative;flex:none;display:grid;grid-template-columns:64px 112px;grid-template-rows:1fr 1fr;column-gap:var(--space-8);align-items:center;padding:var(--space-6);border:1px solid var(--color-border-default);border-radius:var(--radius-12);background:var(--color-surface-default);transition:border-color var(--duration-normal)}
+.editor-refined .shot-strip .shot-item:has(.shot-select.active){border-color:var(--color-brand-primary);box-shadow:0 0 0 1px var(--color-brand-primary)}
+.editor-refined .shot-strip .shot-item>label{position:absolute;inset:var(--space-8) auto auto var(--space-8);z-index:2;display:flex;width:auto;height:auto;margin:0;padding:0}
+.editor-refined .shot-strip .shot-select{position:static;grid-row:1/3;width:64px;height:64px;padding:0;border:0;border-radius:var(--radius-8);overflow:hidden;background:var(--color-surface-subtle)}
+.editor-refined .shot-strip .shot-select::after{content:'';position:absolute;inset:0;border-radius:var(--radius-12)}
+.editor-refined .shot-strip .shot-select canvas{display:block;width:100%;height:100%;object-fit:cover}
+.editor-refined .shot-strip .shot-item strong{align-self:end;margin:0;padding-right:var(--space-20);overflow:hidden;font-size:var(--text-base);line-height:var(--leading-base);white-space:nowrap;text-overflow:ellipsis}
+.editor-refined .shot-strip .shot-item small{align-self:start;font-size:var(--text-sm);line-height:var(--leading-sm)}
+.editor-refined .shot-strip .shot-item:has(.shot-needs:not([hidden])) small{display:none}
+.editor-refined .shot-strip .shot-needs{position:relative;z-index:2;align-self:start;max-width:112px;margin:0;padding:0;overflow:hidden;border:0;background:none;color:var(--color-warning-dark);font-size:var(--text-sm);line-height:var(--leading-sm);white-space:nowrap;text-overflow:ellipsis;text-align:left}
+.editor-refined .shot-strip .remove-shot{position:absolute;top:var(--space-2);right:var(--space-2);z-index:2;width:28px;height:28px;padding:0;border-radius:var(--radius-full);font-size:0;color:var(--color-text-muted)}
+.editor-refined .shot-strip .remove-shot::before{content:'×';font-size:var(--text-lg);line-height:28px}
+.editor-refined .shot-strip .remove-shot:hover{background:var(--color-surface-muted)}
+.editor-refined .shot-strip .shot-footer{flex:none;display:flex;margin:0;padding:var(--space-2) 0;border:0}
+.editor-refined .shot-strip #addTop{width:96px;padding:var(--space-4);border:1px dashed var(--color-border-emphasis);border-radius:var(--radius-12);background:var(--color-surface-default);color:var(--color-brand-primary);font-size:var(--text-sm);text-decoration:none;white-space:normal}
+@media(max-width:639px){.editor-refined .shot-strip .shot-item{grid-template-columns:64px 96px}.editor-refined .shot-strip #addTop{width:88px}}
+.native-note{display:none;margin:var(--space-16) 0 0;font-size:var(--text-sm);line-height:var(--leading-sm);color:var(--color-text-muted)}
+.photo-native .native-note{display:block}
+.editor-refined .photo-native :is(.position-heading,.quick-position){display:none}
+/* Two-step hint in the left panel, drawn like the step pills on the other two stations. */
+.editor-refined .shot-panel{display:flex;flex-direction:column}
+.product-step{display:flex;align-items:center;gap:var(--space-12);width:100%;min-height:52px;margin:0 0 var(--space-12);padding:var(--space-8) var(--space-12);border:0;border-radius:var(--radius-full);background:none;color:var(--color-text-muted);font-size:var(--text-base);font-weight:500;text-align:left;transition:background var(--duration-normal),color var(--duration-normal)}
+.product-step:disabled{background:none;color:var(--color-text-muted)}
+.product-step>span{display:grid;place-items:center;flex:none;width:28px;height:28px;border-radius:var(--radius-full);background:var(--color-surface-muted);font-size:var(--text-sm)}
+.product-step[aria-current=step]{background:var(--color-brand-primary);color:var(--color-text-inverse)}
+.product-step[aria-current=step]>span{background:var(--color-surface-default);color:var(--color-brand-primary)}
+.product-step:focus-visible{outline:2px solid var(--color-brand-primary);outline-offset:2px}
+@media(hover:hover) and (pointer:fine){.product-step:not(:disabled):not([aria-current=step]):hover{background:var(--color-surface-muted)}}
+.product-step-end{position:sticky;bottom:0;z-index:2;margin-top:auto;padding:var(--space-12) 0 var(--space-16);background:var(--color-surface-default)}
+.product-step-end .product-step{margin:0}
+.product-step-end p{margin:var(--space-8) var(--space-12) 0;font-size:var(--text-sm);line-height:var(--leading-sm);color:var(--color-text-muted)}
+@media(max-width:1023px){.product-step-end{position:static;margin-top:var(--space-16)}}
+.editor-refined .shot-panel{position:relative}
+.editor-refined .shot-panel .panel-heading{margin-bottom:var(--space-16);padding-right:64px}
+.editor-refined .shot-panel .panel-heading h1{white-space:nowrap}
+.editor-refined .shot-panel .source-placeholder{display:none}
+.editor-refined .shot-panel .source-area{margin-bottom:var(--space-8)}
+.editor-refined .shot-panel .photo-tools{position:absolute;top:var(--space-24);right:var(--space-16);min-height:0;margin:0}
+.editor-refined .shot-panel .photo-tools button{min-height:32px;padding:0;font-size:var(--text-sm);color:var(--color-text-muted)}
+.editor-refined .shot-strip .shot-list:has(.shot-item:only-child){flex:0 0 auto}
+.common-shots{flex:1;min-width:0;padding:var(--space-8) var(--space-16);border:1px solid color-mix(in srgb,var(--color-brand-primary) 24%,var(--color-surface-default));border-radius:var(--radius-12);background:var(--color-info-light);color:var(--color-brand-primary);text-align:left;transition:border-color var(--duration-normal)}
+.common-shots[hidden]{display:none}
+.common-shots strong{display:block;font-size:var(--text-base);font-weight:600;line-height:var(--leading-base)}
+.common-shots span{display:block;font-size:var(--text-sm);line-height:var(--leading-sm);color:var(--color-text-default)}
+.common-shots:focus-visible{outline:2px solid var(--color-brand-primary);outline-offset:2px}
+@media(hover:hover) and (pointer:fine){.common-shots:hover{border-color:var(--color-brand-primary)}}
+@media(max-width:1279px){.shot-strip-row{flex-wrap:wrap}.common-shots{order:3;flex-basis:100%}}

@@ -1,0 +1,5 @@
+/* Shared light atmosphere for portrait and cartoon discussion workbenches only. */
+body:is([data-station="portrait"],[data-station="cartoon"]){background:linear-gradient(135deg,color-mix(in srgb,var(--color-surface-default) 76%,var(--color-info-light)),color-mix(in srgb,var(--color-surface-default) 86%,var(--color-warning-light)) 56%,color-mix(in srgb,var(--color-surface-default) 82%,var(--color-info-light)));background-attachment:fixed}
+body:is([data-station="portrait"],[data-station="cartoon"]) .center-panel{background:linear-gradient(145deg,color-mix(in srgb,var(--color-surface-default) 72%,var(--color-info-light)),color-mix(in srgb,var(--color-surface-default) 80%,var(--color-warning-light)) 62%,color-mix(in srgb,var(--color-surface-default) 86%,var(--color-info-light)));border-radius:var(--radius-16);padding-inline:var(--space-12)}
+body:is([data-station="portrait"],[data-station="cartoon"]) #stage.desk-stage{background:none}
+body:is([data-station="portrait"],[data-station="cartoon"]) .left-panel,body:is([data-station="portrait"],[data-station="cartoon"]) .right-panel{background:color-mix(in srgb,var(--color-surface-default) 94%,transparent)}

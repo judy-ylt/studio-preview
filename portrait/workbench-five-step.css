@@ -1,0 +1,5 @@
+/* Photo lives only in the left card, so the empty state has to read as the first action. */
+body[data-station="portrait"] .source-empty{display:block;width:100%;padding:var(--space-16) var(--space-12);border:2px dashed var(--color-brand-primary);border-radius:var(--radius-16);background:var(--color-info-light);color:var(--color-brand-primary);text-align:center}
+body[data-station="portrait"] .source-empty strong{display:block;font-size:var(--text-base);font-weight:600}
+body[data-station="portrait"] .source-empty small{display:block;margin-top:var(--space-4);font-size:var(--text-sm);color:var(--color-text-muted)}
+body[data-station="portrait"] .source-empty:focus-visible{outline:2px solid var(--color-brand-primary);outline-offset:2px}

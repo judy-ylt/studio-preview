@@ -1,0 +1,65 @@
+/* Standalone content surface for embedding below the host system's own header. */
+body.studio-embedded{background:#f5f5f1;color:#263730}
+.studio-embedded .topbar{height:48px;padding:0 26px;justify-content:flex-end;background:transparent;border:0}
+.studio-embedded .balance{background:#fff;border:1px solid #e3e6df;border-radius:24px;padding:6px 13px;font-size:12px}
+.studio-embedded .balance b{font-size:18px}
+.studio-embedded .workspace{position:relative;isolation:isolate;grid-template-columns:248px minmax(260px,1fr) 276px;gap:20px;height:calc(100dvh - 48px);min-height:590px;padding:8px 24px 24px}
+.studio-embedded .workspace::before{content:"";position:absolute;inset:0;background:url('assets/product-worktable-v1.png') center/cover no-repeat;opacity:.035;z-index:-1;pointer-events:none}
+.studio-embedded .shot-panel,.studio-embedded .settings-panel{background:#fff;border:1px solid #e8eae3;border-radius:22px;scrollbar-width:thin;scrollbar-color:#d0d5cb transparent}
+.studio-embedded .shot-panel{padding:22px 18px 0}
+.studio-embedded .panel-heading h1{font-size:18px;font-weight:600;letter-spacing:-.03em}
+.studio-embedded .source-area{margin:20px 0 0}
+.studio-embedded .photo-tools{display:flex;justify-content:flex-end;min-height:28px;margin:2px 0 18px}
+.studio-embedded .photo-tools button{font-size:11px;color:#92998d;padding:4px 0}
+.studio-embedded .source-loaded img{border-radius:9px;width:52px;height:52px}
+.studio-embedded .shot-heading h2{font-size:13px}
+.studio-embedded .shot-heading>span{font-size:11px}
+.studio-embedded .shot-list{gap:14px 10px}
+.studio-embedded .shot-select{border-radius:11px;border:2px solid #fff;box-shadow:0 1px 4px #34472b0c}
+.studio-embedded .shot-select.active{border-color:#1f5fc4}
+.studio-embedded .shot-item input{width:16px;height:16px}
+.studio-embedded .shot-item strong{font-size:12px;margin-top:6px}
+.studio-embedded .shot-item small{font-size:10px;line-height:1.5}
+.studio-embedded .order{border-color:#e5e8df;padding:16px 0 18px;z-index:3;box-shadow:0 -12px 12px #fff}
+.studio-embedded .order strong{font-size:23px}
+.studio-embedded .order p{margin-bottom:12px}
+.studio-embedded .primary{border-radius:24px;background:#1f5fc4;min-height:44px}
+.studio-embedded .secondary{border-radius:12px;border-color:#dfe5d9}
+.studio-embedded .preview-panel{padding:22px 2px 10px;min-width:0}
+.studio-embedded .preview-heading{margin:0 4px 18px}
+.studio-embedded .preview-heading h2{font-size:22px;font-weight:600;letter-spacing:-.04em}
+.studio-embedded .preview-heading span{font-size:11px}
+.studio-embedded .canvas-space>canvas{border:8px solid #fff;outline:0;box-shadow:0 4px 18px #3d4b3212;border-radius:4px}
+.studio-embedded .preview-bottom{margin:16px 4px 0;gap:8px;align-items:center}
+.studio-embedded .preview-bottom>span{font-size:10px;flex-basis:100%;line-height:1.6}
+.studio-embedded .preview-bottom>button{font-size:12px}
+.studio-embedded .settings-panel{padding:24px 20px 20px}
+.studio-embedded .settings-heading>span{font-size:11px}
+.studio-embedded .settings-heading h2{font-size:18px;margin:8px 0 20px}
+.studio-embedded .editor-tabs{gap:24px;margin-bottom:20px}
+.studio-embedded .editor-tabs button{font-size:13px;padding-bottom:10px}
+.studio-embedded .settings-panel h3{font-size:13px}
+.studio-embedded .setting-heading>span{font-size:10px}
+.studio-embedded .backgrounds{gap:10px 8px}
+.studio-embedded .bg-choice{border-radius:7px;background:#fff;border-color:#e5e7df}
+.studio-embedded .bg-choice span{aspect-ratio:4/5}
+.studio-embedded .bg-choice small{font-size:10px;padding:8px 0;line-height:1.5}
+.studio-embedded .background-name{margin:14px 0}
+.studio-embedded #browseBackgrounds{margin:10px 0 0;text-align:right;font-size:11px}
+.studio-embedded #applyAll{font-size:12px}
+.studio-embedded .reference-block{margin-top:22px;padding-top:18px}
+.studio-embedded .empty-state{max-width:380px;padding:25px 18px 35px;background:#ffffffbd;border:1px solid #fff;border-radius:24px}
+.studio-embedded .upload-mark{border:0;color:#6c8070;background:#eef1e9;border-radius:20px;margin-bottom:20px}
+.studio-embedded .empty-state h3{font-size:21px}
+.studio-embedded .or{margin-top:25px}
+.studio-embedded dialog{border-radius:22px;max-width:1000px}
+.background-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 16px}
+.gallery-background{padding:6px 6px 14px;border:2px solid transparent;background:#fff;text-align:left;box-shadow:0 2px 8px #4b573410;border-radius:5px}
+.gallery-background>span{display:block;width:100%;aspect-ratio:1;background-size:cover;background-position:center}
+.gallery-background>strong{font-size:14px;display:block;margin:12px 6px 0;font-weight:500}
+.gallery-background[aria-pressed="true"]{border-color:#1f5fc4}
+.gallery-background:focus-visible{outline:2px solid #004896;outline-offset:3px}
+@media(min-width:1440px){.studio-embedded .workspace{grid-template-columns:280px minmax(360px,1fr) 308px;gap:26px;padding:12px 30px 30px}.studio-embedded .shot-panel{padding:26px 22px 0}.studio-embedded .settings-panel{padding:26px 24px}.studio-embedded .preview-heading h2{font-size:24px}.studio-embedded .bg-choice small{font-size:11px}}
+@media(max-width:1150px) and (min-width:761px){.studio-embedded .workspace{grid-template-columns:206px minmax(230px,1fr) 240px;gap:14px;padding:8px 16px 18px}.studio-embedded .shot-panel{padding:20px 13px 0}.studio-embedded .settings-panel{padding:22px 15px 18px}.studio-embedded .panel-heading h1{font-size:16px}.studio-embedded .preview-heading h2{font-size:20px}.studio-embedded .source-loaded>div strong{max-width:110px;font-size:12px}.studio-embedded .source-loaded{gap:8px}.studio-embedded .editor-tabs{gap:22px}.studio-embedded .settings-heading h2{font-size:17px}.studio-embedded .backgrounds{gap:9px 7px}.studio-embedded .bg-choice small{font-size:9px}}
+@media(max-width:850px) and (min-width:761px){.studio-embedded .workspace{grid-template-columns:184px minmax(200px,1fr) 220px;gap:10px;padding-inline:12px}.studio-embedded .shot-panel{padding-inline:11px}.studio-embedded .settings-panel{padding-inline:12px}.studio-embedded .shot-list{gap:12px 8px}.studio-embedded .panel-heading{gap:5px}.studio-embedded .panel-heading h1{font-size:15px}.studio-embedded .source-loaded img{width:42px;height:42px}.studio-embedded .source-loaded>div strong{max-width:100px}.studio-embedded .order>.primary{font-size:12px;padding-inline:8px}}
+@media(max-width:760px){.studio-embedded .topbar{height:44px;padding:0 16px}.studio-embedded .balance small{display:inline}.studio-embedded .workspace{height:auto;min-height:0;padding:0 12px 20px;gap:16px;display:flex}.studio-embedded .preview-panel{padding:20px 4px 12px;min-height:450px}.studio-embedded .preview-heading{margin-bottom:14px}.studio-embedded .canvas-space{height:310px}.studio-embedded .shot-panel{padding:22px 18px 0;overflow:visible}.studio-embedded .shot-list{grid-template-columns:repeat(3,minmax(0,1fr))}.studio-embedded .source-loaded>div strong{max-width:220px}.studio-embedded .photo-tools{margin-bottom:12px}.studio-embedded .order{box-shadow:none;padding:16px 0 20px}.studio-embedded .settings-panel{padding:24px 20px;overflow:visible}.studio-embedded .backgrounds{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.studio-embedded .bg-choice span{aspect-ratio:4/3}.studio-embedded .bg-choice small{font-size:12px}.background-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}.gallery-background>strong{font-size:12px}}

@@ -1,0 +1,222 @@
+/* Discussion prototypes use the light palette, matching the existing Studio pages. Generated from tokens.css v1.2.0; dark overrides omitted. */
+/* Smarter 企業設計系統 — 由 tokens.json v1.2.0 生成，請勿手改 */
+/* 重新生成：python3 init_design.py --out . --css-only --force */
+
+:root {
+  /* ── 品牌 ── */
+  --color-brand-primary: #004896;
+  --color-brand-accent: #F7B500;
+
+  /* ── 表面 ── */
+  --color-surface-default: #FFFFFF;
+  --color-surface-subtle: #F9FAFB;
+  --color-surface-muted: #F3F4F6;
+  --color-surface-emphasis: #E5E7EB;
+
+  /* ── 文字 ── */
+  --color-text-default: #111827;
+  --color-text-muted: #6B7280;
+  --color-text-subtle: #9CA3AF;
+  --color-text-inverse: #FFFFFF;
+  /* text-subtle 對任何淺底 <2.6:1，只能用在 placeholder 與純裝飾 */
+
+  /* ── 邊框 ── */
+  --color-border-default: #E5E7EB;
+  --color-border-muted: #F3F4F6;
+  --color-border-emphasis: #D1D5DB;
+
+  /* ── 語意色 ── */
+  --color-success-base: #10B981;
+  --color-success-light: #D1FAE5;
+  --color-success-dark: #059669;
+  --color-success-foreground: #FFFFFF;
+  --color-success-on_light: #047B56;
+  --color-warning-base: #F59E0B;
+  --color-warning-light: #FEF3C7;
+  --color-warning-dark: #D97706;
+  --color-warning-foreground: #1F2937;
+  --color-warning-on_light: #A55B05;
+  --color-error-base: #EF4444;
+  --color-error-light: #FEE2E2;
+  --color-error-dark: #DC2626;
+  --color-error-foreground: #FFFFFF;
+  --color-error-on_light: #C92020;
+  --color-info-base: #3B82F6;
+  --color-info-light: #DBEAFE;
+  --color-info-dark: #2563EB;
+  --color-info-foreground: #FFFFFF;
+  --color-info-on_light: #1A5BEA;
+  /* 注意：success/error/info 的 foreground 宣告為白字但實測未達 AA，見 04-已知缺口 */
+
+  /* ── 平台色（platform）── */
+  --color-marketing-primary: #d97828;
+  --color-marketing-dark: #b86420;
+  --color-marketing-light: #fdf3e8;
+  --color-sales-primary: #d5276a;
+  --color-sales-dark: #b32058;
+  --color-sales-light: #fce7ef;
+  --color-fulfillment-primary: #6d26a3;
+  --color-fulfillment-dark: #5a1f87;
+  --color-fulfillment-light: #f3e8fb;
+  --color-management-primary: #479d27;
+  --color-management-dark: #3d8621;
+  --color-management-light: #ecf7e6;
+  --color-hr-primary: #227dc4;
+  --color-hr-dark: #1c68a3;
+  --color-hr-light: #e6f2fb;
+  --color-data-primary: #644ee5;
+  --color-data-dark: #5240bf;
+  --color-data-light: #eeeafc;
+
+  /* ── 可安全承載白字的平台色（≥4.5:1）── */
+  /* 要在彩色底上放白字，只能用這些；hover 用 -text */
+  --color-marketing-on-light: #AF601F;   /* 白字 4.65:1 */
+  --color-marketing-text: #92501A;       /* hover / 淺底文字 6.20:1 */
+  --color-sales-on-light: #D5276A;   /* 白字 4.85:1 */
+  --color-sales-text: #B22159;       /* hover / 淺底文字 6.45:1 */
+  --color-fulfillment-on-light: #6D26A3;   /* 白字 8.55:1 */
+  --color-fulfillment-text: #541D7E;       /* hover / 淺底文字 11.33:1 */
+  --color-management-on-light: #3C8421;   /* 白字 4.65:1 */
+  --color-management-text: #326E1B;       /* hover / 淺底文字 6.21:1 */
+  --color-hr-on-light: #2178BD;   /* 白字 4.68:1 */
+  --color-hr-text: #1B649D;       /* hover / 淺底文字 6.26:1 */
+  --color-data-on-light: #644EE5;   /* 白字 5.58:1 */
+  --color-data-text: #4C32E1;       /* hover / 淺底文字 7.37:1 */
+
+  /* ── 字體 ── */
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --font-sans-cjk: Inter, ui-sans-serif, system-ui, -apple-system, 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', 'Heiti TC', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  /* ── 字級（只有這些，不要用階外的值）── */
+  --text-xs: 12px;  --leading-xs: 16px;
+  --text-sm: 14px;  --leading-sm: 20px;
+  --text-base: 16px;  --leading-base: 24px;
+  --text-lg: 18px;  --leading-lg: 28px;
+  --text-xl: 20px;  --leading-xl: 28px;
+  --text-2xl: 24px;  --leading-2xl: 32px;
+  --text-3xl: 30px;  --leading-3xl: 36px;
+  --text-4xl: 36px;  --leading-4xl: 40px;
+  --text-5xl: 48px;  --leading-5xl: 48px;
+  --text-6xl: 60px;  --leading-6xl: 60px;
+
+  /* ── 字重 ── */
+  --weight-thin: 100;
+  --weight-extralight: 200;
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --weight-black: 900;
+
+  /* ── 間距（階上的值，不是「4px 倍數」）── */
+  --space-0: 0px;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-32: 32px;
+  --space-36: 36px;
+  --space-40: 40px;
+  --space-44: 44px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+  --space-112: 112px;
+  --space-128: 128px;
+
+  --space-icon-gap: 8px;
+  --space-form-gap: 16px;
+  --space-card-padding: 24px;
+  --space-dialog-padding: 24px;
+  --space-section-gap: 32px;
+  --space-page-padding: 24px;
+  --space-table-cell-padding: 16px;
+  --space-button-padding-x: 16px;
+  --space-button-padding-y: 8px;
+  --space-input-padding: 12px;
+  --space-sidebar-width: 280px;
+  --space-header-height: 64px;
+
+  /* ── 圓角 ── */
+  --radius-0: 0px;
+  --radius-2: 2px;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-24: 24px;
+  --radius-full: 9999px;
+  --radius-button: 8px;
+  --radius-input: 6px;
+  --radius-card: 8px;
+  --radius-dialog: 12px;
+  --radius-badge: 9999px;
+  --radius-avatar: 9999px;
+  --radius-tooltip: 6px;
+  --radius-dropdown: 6px;
+  --radius-progress: 9999px;
+
+  /* ── 陰影 ── */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-default: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+  /* ── 動態 ── */
+  --duration-instant: 0ms;
+  --duration-fast: 75ms;
+  --duration-quick: 100ms;
+  --duration-normal: 150ms;
+  --duration-moderate: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+  --duration-slowest: 700ms;
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-energetic: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ── 無障礙 ── */
+  --touch-target-min: 44px;
+  --focus-ring: 3px solid var(--color-brand-primary);
+}
+
+/* ── 全域最低要求（拿掉任何一條都會讓閘門變紅）── */
+:is(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--radius-4);
+}
+
+@media (pointer: coarse) {
+  button, a[role="button"], [role="tab"] {
+    min-height: var(--touch-target-min);
+    min-width: var(--touch-target-min);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

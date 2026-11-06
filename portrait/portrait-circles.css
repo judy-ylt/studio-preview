@@ -1,0 +1,16 @@
+/* Portrait option art follows the cartoon gallery: circular image, centred label, blue ring when selected. */
+body[data-station="portrait"] .card-desk{gap:var(--space-24) var(--space-20);align-items:start}
+body[data-station="portrait"] .card-desk>.choice{padding:var(--space-8) 0 0;border:0;border-radius:var(--radius-16);outline:0;background:none;box-shadow:none;overflow:visible;text-align:center}
+body[data-station="portrait"] .card-desk>.choice :is(img,canvas,.swatch){display:block;width:100%;height:auto;aspect-ratio:1;border-radius:50%;object-fit:cover;object-position:50% 10%;background:var(--color-info-light);transition:transform var(--duration-moderate) var(--ease-smooth),box-shadow var(--duration-moderate) var(--ease-smooth)}
+body[data-station="portrait"] .card-desk>.choice.pose img{padding:var(--space-12);object-fit:contain;object-position:50% 50%}
+body[data-station="portrait"] .card-desk>.choice.background :is(img,canvas){object-position:50% 50%}
+body[data-station="portrait"] .card-desk>.choice.background .swatch{box-shadow:inset 0 0 0 1px var(--color-border-default)}
+body[data-station="portrait"] .card-desk>.choice strong{margin:var(--space-12) 0 var(--space-4);font-size:var(--text-lg);line-height:var(--leading-lg)}
+body[data-station="portrait"] .card-desk>.choice small{margin:0 0 var(--space-4)}
+body[data-station="portrait"] .card-desk>.choice[aria-pressed=true]{outline:0}
+body[data-station="portrait"] .card-desk>.choice[aria-pressed=true] :is(img,canvas,.swatch){transform:translateY(-4px);box-shadow:0 0 0 2px var(--color-surface-default),0 0 0 4px var(--color-brand-primary)}
+body[data-station="portrait"] .card-desk>.choice:focus-visible{outline:2px solid var(--color-brand-primary);outline-offset:4px}
+@media(hover:hover) and (pointer:fine){body[data-station="portrait"] .card-desk>.choice:hover :is(img,canvas,.swatch){transform:translateY(-4px)}}
+@media(min-width:1280px){body[data-station="portrait"] .card-desk{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:639px){body[data-station="portrait"] .card-desk{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-20) var(--space-16)}body[data-station="portrait"] .card-desk>.choice strong{font-size:var(--text-base);line-height:var(--leading-base)}}
+@media(prefers-reduced-motion:reduce){body[data-station="portrait"] .card-desk>.choice :is(img,canvas,.swatch){transition:none;transform:none}}
