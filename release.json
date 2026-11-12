@@ -1,15 +1,15 @@
 {
-  "release": "20261106-publish-2",
-  "updated": "2026-11-06",
-  "product_variant": "workbench",
+  "release": "20261112-publish-1",
+  "updated": "2026-11-12",
+  "product_variant": "auto-cutout",
   "sites": {
-    "portrait": "a898ab90fa6a74f6e6af23984814a69326a76173a0307782ae16a6c769cad0f6",
-    "cartoon": "aa1e22096502ef1185be5974ceab8c62d1e1dd29f2d58283aef4aaa64b9a9234",
-    "product": "39f05b61ecc137a75d89ceafa6edae3795970fff07586e77b68868e7debe2c9d"
+    "portrait": "3a1efe1525a5579d39c375127f1530e2cb466c8df8fdbe92028e2525e05dbb86",
+    "cartoon": "fc76657ccff4d13c24301ff08ece5313950e0515b9b9dee5654c87e198cc4598",
+    "product": "b6641d574d6064b2dd55ebc8d4b0b1ec2415502617d1def9a6c828e63147416b"
   },
   "entries": {
     "portrait": "portrait/workbench-proposal.html",
     "cartoon": "cartoon/workbench-refined.html",
-    "product": "product/workbench-proposal.html"
+    "product": "product/workbench-auto-cutout.html"
   }
 }

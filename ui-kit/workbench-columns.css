@@ -1,0 +1,11 @@
+/* Shared column rhythm for portrait, cartoon and product workbenches. */
+body:is(.editor-refined,[data-station="cartoon"]){--workbench-left:224px;--workbench-right:288px;--workbench-inset:24px;--workbench-panel-padding:24px}
+@media(min-width:1024px){
+html body:is(.editor-refined,[data-station="cartoon"]) :is(.workbench,.workspace){display:grid;grid-template-columns:var(--workbench-left) minmax(0,1fr) var(--workbench-right)!important;gap:0;margin-inline:var(--workbench-inset)}
+html body:is(.editor-refined,[data-station="cartoon"]).first-step-focus .workbench,html body:is(.editor-refined,[data-station="cartoon"]).style-focus .workbench,html body:is(.editor-refined,[data-station="cartoon"]):is([data-flow-phase="1"],[data-flow-phase="2"]) .workspace{grid-template-columns:var(--workbench-left) minmax(0,1fr)!important}
+html body:is(.editor-refined,[data-station="cartoon"]) :is(.left-panel,.shot-panel){padding-inline:20px}
+html body:is(.editor-refined,[data-station="cartoon"]) :is(.center-panel,.preview-panel){padding-inline:var(--workbench-panel-padding)}
+}
+@media(min-width:1024px) and (max-width:1279px){body:is(.editor-refined,[data-station="cartoon"]){--workbench-left:208px;--workbench-right:272px;--workbench-inset:16px;--workbench-panel-padding:20px}}
+@media(min-width:1440px){body:is(.editor-refined,[data-station="cartoon"]){--workbench-left:248px;--workbench-right:320px;--workbench-panel-padding:32px}}
+@media(max-width:1023px){html body:is(.editor-refined,[data-station="cartoon"]) :is(.workbench,.workspace){display:flex;flex-direction:column;grid-template-columns:none!important}}

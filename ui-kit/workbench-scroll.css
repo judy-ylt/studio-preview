@@ -1,0 +1,13 @@
+/* A bounded workbench must keep all overflowing content reachable. */
+@media(min-width:1024px){
+body.editor-refined :is(.workbench,.workspace){min-height:0}
+body.editor-refined :is(.left-panel,.shot-panel,.center-panel,.preview-panel,.right-panel,.settings-panel){min-height:0;min-width:0}
+body.editor-refined .preview-panel{overflow-y:auto;scrollbar-width:thin}
+body.editor-refined .preview-panel>#productInfoStage{flex:none;margin-block:auto;padding-bottom:40px}
+body.editor-refined .shot-panel>*{flex-shrink:0}
+body.editor-refined .center-panel #stage{min-height:0;overflow-y:auto;scrollbar-width:thin}
+}
+@media(max-width:1023px){
+body.editor-refined :is(.workbench,.workspace){height:auto;max-height:none;overflow:visible}
+body.editor-refined :is(.center-panel,.preview-panel){height:auto;max-height:none;overflow:visible}
+}

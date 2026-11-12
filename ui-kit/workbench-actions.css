@@ -1,0 +1,14 @@
+/* One primary continuation, consistently at the bottom of the central workspace. */
+#stageActions,#productStageActions{flex:none;background:var(--color-surface-default);z-index:5;padding-bottom:4px}
+#stageActions .step-actions,#productStageActions .step-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;padding:16px 0 8px;border-top:1px solid var(--color-border-default)}
+:is(#stageActions,#productStageActions) :is(.primary,.secondary){min-height:44px;border-radius:999px;padding:10px 22px;font-size:15px;line-height:1.5;white-space:normal}
+:is(.right-panel,.settings-panel) :is(#review){display:none!important}
+body[data-flow-phase="1"] #productStageActions{display:none}
+#productInfoForm>button[type="submit"]{display:none}
+@media(min-width:1024px){
+#stageActions,#productStageActions{position:sticky;bottom:0}
+body.editor-refined[data-flow-phase="2"] .preview-panel{display:grid;grid-template-rows:minmax(0,1fr) auto;overflow:hidden}
+body.editor-refined[data-flow-phase="2"] .preview-panel>#productInfoStage{overflow-y:auto;max-height:100%;margin:auto;min-height:0;padding-bottom:20px}
+body[data-flow-phase="2"] #productStageActions{grid-row:2}
+}
+@media(max-width:1023px){#stageActions,#productStageActions{position:sticky;bottom:0;padding-inline:4px;box-shadow:0 -5px 12px #ffffffdd}}

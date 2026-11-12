@@ -4,7 +4,72 @@ body[data-station="portrait"] .source-empty strong{display:block;font-size:var(-
 body[data-station="portrait"] .source-empty small{display:block;margin-top:var(--space-4);font-size:var(--text-sm);color:var(--color-text-muted)}
 body[data-station="portrait"] .source-empty:focus-visible{outline:2px solid var(--color-brand-primary);outline-offset:2px}
 /* Background step: the chosen pose stands on the scene as a plain silhouette, clearly a position hint. */
-.scene-preview{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;border-radius:var(--radius-12);background:var(--color-surface-muted)}
-.scene-preview>.reference-image{position:absolute;inset:0;width:100%;height:100%!important;margin:0;border-radius:0;object-fit:cover}
+.scene-preview{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius-12);background:var(--color-surface-muted)}
+.scene-preview>.reference-image{position:absolute;inset:0;width:100%;height:100%!important;max-height:none;margin:0;border-radius:0;object-fit:cover}
 .scene-preview>.pose-silhouette{position:absolute;left:50%;bottom:var(--space-8);height:86%;width:auto;max-width:96%;object-fit:contain;transform:translateX(-50%)}
 .scene-preview>.pose-silhouette.is-cropped{bottom:-9%;height:92%}
+
+/* Keep every inspector reference in the same square, without distorting pose artwork. */
+body[data-station="portrait"] .inspector>.reference-image{width:100%;height:auto;aspect-ratio:1/1;max-height:none;object-fit:contain}
+body[data-station="portrait"] .inspector .scene-preview>.reference-image{max-height:none;aspect-ratio:auto;object-fit:cover}
+body[data-station="portrait"] .inspector .scene-preview>.pose-silhouette{max-height:none;max-width:96%;object-fit:contain}
+
+/* New complete silhouettes keep hands inside the preview rather than cropping wrists. */
+.scene-preview>.pose-silhouette,.scene-preview>.pose-silhouette.is-cropped{bottom:0;height:94%;max-width:96%}
+
+.scene-preview>.pose-silhouette{filter:url(#solidPose);opacity:.82}
+
+body[data-station="portrait"].first-step-focus .right-panel{display:none}
+@media(min-width:1024px){body.editor-refined[data-station="portrait"].first-step-focus .workbench{grid-template-columns:192px minmax(0,1fr)}}
+@media(min-width:1280px){body.editor-refined[data-station="portrait"].first-step-focus .workbench{grid-template-columns:264px minmax(0,1fr)}}
+
+/* Keep ratio choices compact so the shared composition remains visible. */
+body[data-station="portrait"] .size-options{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:stretch;gap:12px;padding:8px 4px}
+body[data-station="portrait"] .size-choice{justify-content:end;min-width:0;gap:8px}
+body[data-station="portrait"] .size-options+.bundle{margin-top:12px}
+body[data-station="portrait"] .final-preview{max-width:280px}
+body[data-station="portrait"] .final-preview canvas{max-height:32vh}
+@media(max-width:639px){body[data-station="portrait"] .size-options{gap:6px}body[data-station="portrait"] .size-choice{padding:6px 2px}body[data-station="portrait"] .final-preview canvas{max-height:360px}}
+body[data-station="portrait"] .size-options~.section-heading{margin:8px 0}
+body[data-station="portrait"] .final-preview canvas{max-height:26vh}
+body[data-station="portrait"] .final-preview p{margin:8px 0;font-size:var(--text-sm)}
+@media(max-width:639px){body[data-station="portrait"] .final-preview canvas{max-height:360px}}
+
+/* Pose choices use one card boundary; the artwork has no second frame. */
+body[data-station="portrait"] .card-desk:has(>.choice.pose){grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:4px;align-items:stretch}
+body[data-station="portrait"] .card-desk>.choice.pose{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;padding:12px 8px;border:1px solid var(--color-border-default);border-radius:var(--radius-12);background:var(--color-surface-default);box-shadow:none;outline:0;overflow:hidden}
+body[data-station="portrait"] .card-desk>.choice.pose img{width:100%;height:120px;aspect-ratio:auto;padding:0;border:0;border-radius:0;object-fit:contain;background:transparent;box-shadow:none;transform:none;transition:none}
+body[data-station="portrait"] .card-desk>.choice.pose strong{margin:4px 0 0;font-size:var(--text-base);line-height:var(--leading-base)}
+body[data-station="portrait"] .card-desk>.choice.pose small{margin:0;font-size:var(--text-sm)}
+body[data-station="portrait"] .card-desk>.choice.pose[aria-pressed=true]{border-color:var(--color-brand-primary);background:var(--color-info-light);box-shadow:none;outline:0}
+body[data-station="portrait"] .card-desk>.choice.pose[aria-pressed=true] img{box-shadow:none;transform:none}
+body[data-station="portrait"] .card-desk>.choice.pose:focus-visible{border-color:var(--color-brand-primary);outline:2px solid var(--color-brand-primary);outline-offset:3px}
+@media(hover:hover) and (pointer:fine){body[data-station="portrait"] .card-desk>.choice.pose:hover{border-color:var(--color-brand-primary)}body[data-station="portrait"] .card-desk>.choice.pose:hover img{transform:none;box-shadow:none}}
+@media(min-width:640px){body[data-station="portrait"] .card-desk:has(>.choice.pose){grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1280px){body[data-station="portrait"] .card-desk:has(>.choice.pose){grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(min-width:1280px) and (max-height:800px){
+ body[data-station="portrait"] .center-panel:has(.choice.pose) .filters{margin-bottom:16px}
+ body[data-station="portrait"] .card-desk>.choice.pose{padding:8px;gap:2px}
+ body[data-station="portrait"] .card-desk>.choice.pose img{height:104px}
+}
+
+/* Output: composition first, five ratios plus a compact bundle on the right. */
+body[data-station="portrait"] .portrait-output-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:start;padding:4px}
+.portrait-composition .section-heading{margin:0 0 12px}
+.portrait-preview-surface{display:grid;place-items:center;min-height:240px;border-radius:var(--radius-12);background:var(--color-surface-muted);padding:12px}
+.portrait-preview-surface canvas{display:block;width:100%;height:auto;max-height:44vh;object-fit:contain}
+.portrait-composition>p{margin-top:8px;font-size:var(--text-sm);text-align:center}
+.portrait-output-options h3{font-size:var(--text-base)}
+.portrait-output-options>p{font-size:var(--text-sm);margin:8px 0 16px}
+.portrait-ratio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+body[data-station="portrait"] .portrait-ratio-grid .size-choice{min-width:0;min-height:94px;padding:10px 4px;gap:4px;border:1px solid var(--color-border-default);outline:0;justify-content:center;background:var(--color-surface-default)}
+body[data-station="portrait"] .portrait-ratio-grid .size-choice[aria-pressed=true]{border-color:var(--color-brand-primary);background:var(--color-info-light)}
+body[data-station="portrait"] .portrait-ratio-grid .size-choice:focus-visible{outline:var(--focus-ring);outline-offset:2px}
+body[data-station="portrait"] .portrait-ratio-grid .ratio-glyph-area{display:grid;place-items:center;width:38px;height:36px;border:0;background:none;box-shadow:none}
+.ratio-glyph-area i{display:block;border:1px solid var(--color-border-emphasis);background:var(--color-surface-default)}
+body[data-station="portrait"] .portrait-ratio-grid .bundle-dot{width:16px;height:16px;border:0;border-radius:50%;background:var(--color-brand-accent);box-shadow:none;margin:6px 0}
+body[data-station="portrait"] .portrait-ratio-grid .size-bundle{background:var(--color-warning-light);border-color:var(--color-brand-accent)}
+body[data-station="portrait"] .portrait-ratio-grid .size-bundle[aria-pressed=true]{border-color:var(--color-brand-primary);background:var(--color-info-light)}
+.portrait-ratio-grid .size-bundle small{font-size:var(--text-sm)}
+@media(min-width:1280px){body[data-station="portrait"] .portrait-output-layout{grid-template-columns:minmax(0,2fr) minmax(190px,1fr);gap:24px}}
+@media(max-width:639px){.portrait-preview-surface canvas{max-height:360px}.portrait-ratio-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
