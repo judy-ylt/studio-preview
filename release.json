@@ -1,9 +1,9 @@
 {
-  "release": "20261112-publish-1",
+  "release": "20261112-publish-2",
   "updated": "2026-11-12",
   "product_variant": "auto-cutout",
   "sites": {
-    "portrait": "3a1efe1525a5579d39c375127f1530e2cb466c8df8fdbe92028e2525e05dbb86",
+    "portrait": "fd4bbd6f140078bbf314f6859bb287720092821ad7f0c9c63d81db0c961f81dc",
     "cartoon": "fc76657ccff4d13c24301ff08ece5313950e0515b9b9dee5654c87e198cc4598",
     "product": "b6641d574d6064b2dd55ebc8d4b0b1ec2415502617d1def9a6c828e63147416b"
   },
